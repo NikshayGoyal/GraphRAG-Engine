@@ -1,0 +1,13 @@
+Real-World Data Science Applications and Impact
+
+Data science has transformed every major industry through practical applications of machine learning, statistics, and AI.
+
+Netflix uses collaborative filtering and matrix factorization for its recommendation system, which drives 80 percent of watched content. The Netflix Prize competition in 2006 offered one million dollars and was won by BellKor team led by Yehuda Koren using an ensemble of 107 algorithms. Spotify created Discover Weekly in 2015 using collaborative filtering and audio analysis with convolutional neural networks.
+
+In healthcare, Google DeepMind created AlphaFold led by Demis Hassabis and John Jumper, solving protein structure prediction and winning the 2024 Nobel Prize in Chemistry. Andrew Ng at Stanford built CheXNet in 2017, a deep learning system detecting pneumonia from chest X-rays better than radiologists.
+
+Autonomous vehicles combine computer vision, sensor fusion, and reinforcement learning. Waymo, originally led by Sebastian Thrun, has logged over 20 million autonomous miles. Tesla's approach under Andrej Karpathy relies on vision-only AI without LiDAR.
+
+In NLP, Google integrated BERT into search in 2019, improving understanding of natural language queries. OpenAI launched ChatGPT in 2022 using GPT-3.5 fine-tuned with Reinforcement Learning from Human Feedback, creating the fastest-growing application in history.
+
+Ethics remains critical. Amazon scrapped an AI recruiting tool that showed gender bias. ProPublica revealed racial bias in the COMPAS criminal risk algorithm. SHAP by Scott Lundberg and LIME by Marco Ribeiro provide model interpretability to address the black box problem in AI decision-making.

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DS Knowledge Navigator - Knowledge Graph Visualization</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0a0e17;
+            color: #e0e6ed;
+            overflow: hidden;
+        }
+        #header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+            background: linear-gradient(135deg, #0d1321 0%, #1a1f35 100%);
+            border-bottom: 1px solid #2a3050;
+            padding: 12px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        #header h1 {
+            font-size: 18px; font-weight: 600;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .stats {
+            display: flex; gap: 20px; font-size: 13px; color: #8892a8;
+        }
+        .stats span { color: #60a5fa; font-weight: 600; }
+        #sidebar {
+            position: fixed; top: 52px; right: 0; width: 320px; bottom: 0;
+            background: #0d1321; border-left: 1px solid #2a3050;
+            padding: 16px; overflow-y: auto; z-index: 10;
+        }
+        #sidebar h3 {
+            font-size: 14px; color: #8892a8; text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 12px;
+        }
+        .entity-card {
+            background: #151b2e; border: 1px solid #2a3050; border-radius: 8px;
+            padding: 12px; margin-bottom: 8px;
+        }
+        .entity-card h4 { font-size: 14px; color: #60a5fa; margin-bottom: 4px; }
+        .entity-card .type {
+            font-size: 11px; color: #0a0e17; padding: 2px 8px;
+            border-radius: 10px; display: inline-block; margin-bottom: 6px;
+        }
+        .entity-card p { font-size: 12px; color: #8892a8; line-height: 1.4; }
+        .connections { margin-top: 8px; }
+        .connections li {
+            font-size: 11px; color: #6b7994; list-style: none;
+            padding: 2px 0; border-bottom: 1px solid #1a2040;
+        }
+        .connections li:last-child { border-bottom: none; }
+        #legend {
+            position: fixed; bottom: 16px; left: 16px; z-index: 10;
+            background: #151b2eee; border: 1px solid #2a3050; border-radius: 10px;
+            padding: 12px 16px; display: flex; gap: 12px; flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex; align-items: center; gap: 6px; font-size: 11px; color: #8892a8;
+        }
+        .legend-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+        }
+        #graph { position: fixed; top: 52px; left: 0; right: 320px; bottom: 0; }
+        canvas { display: block; }
+        #community-filter {
+            margin-bottom: 16px;
+        }
+        #community-filter select {
+            width: 100%; padding: 8px; background: #151b2e; color: #e0e6ed;
+            border: 1px solid #2a3050; border-radius: 6px; font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>DS Knowledge Navigator - Knowledge Graph</h1>
+        <div class="stats">
+            <div><span id="nodeCount">0</span> Entities</div>
+            <div><span id="edgeCount">0</span> Relationships</div>
+            <div><span id="commCount">0</span> Communities</div>
+        </div>
+    </div>
+    <div id="graph"><canvas id="canvas"></canvas></div>
+    <div id="sidebar">
+        <div id="community-filter">
+            <h3>Filter Community</h3>
+            <select id="commSelect"><option value="all">All Communities</option></select>
+        </div>
+        <h3>Entity Details</h3>
+        <div id="entityInfo">
+            <p style="color:#6b7994;font-size:13px;">Click a node to see details</p>
+        </div>
+    </div>
+    <div id="legend"></div>
+
+    <script>
+    // Color palette for entity types
+    const TYPE_COLORS = {
+        person: '#f472b6', organization: '#60a5fa', technology: '#34d399',
+        algorithm: '#fbbf24', concept: '#a78bfa', tool: '#f97316',
+        dataset: '#06b6d4', event: '#ef4444', unknown: '#6b7280'
+    };
+    // Community colors
+    const COMM_COLORS = [
+        '#60a5fa','#f472b6','#34d399','#fbbf24','#a78bfa','#f97316',
+        '#06b6d4','#ef4444','#84cc16','#ec4899','#14b8a6','#f59e0b',
+        '#8b5cf6','#10b981','#e11d48'
+    ];
+
+    // Parse GML inline (embedded from output)
+    const graphData = {"nodes": [{"id": 0, "label": "MACHINE LEARNING", "type": "concept", "description": "A branch of artificial intelligence that enables computers to learn patterns from data without explicit programming.", "community": 0, "degree": 3}, {"id": 1, "label": "ARTHUR SAMUEL", "type": "person", "description": "Pioneered Machine Learning.", "community": 0, "degree": 2}, {"id": 2, "label": "IBM", "type": "organization", "description": "Organization where Arthur Samuel pioneered Machine Learning.", "community": 0, "degree": 1}, {"id": 3, "label": "SUPERVISED LEARNING", "type": "concept", "description": "The most widely used category of Machine Learning.", "community": 0, "degree": 3}, {"id": 4, "label": "LEO BREIMAN", "type": "person", "description": "Created Random Forest.", "community": 0, "degree": 2}, {"id": 5, "label": "UC BERKELEY", "type": "organization", "description": "Institution where Leo Breiman created Random Forest.", "community": 0, "degree": 2}, {"id": 6, "label": "RANDOM FOREST", "type": "algorithm", "description": "An ensemble method that builds multiple decision trees and merges predictions through voting.", "community": 0, "degree": 3}, {"id": 7, "label": "DECISION TREES", "type": "algorithm", "description": "A type of algorithm used in Random Forest.", "community": 0, "degree": 1}, {"id": 8, "label": "VLADIMIR VAPNIK", "type": "person", "description": "Developed Support Vector Machines.", "community": 0, "degree": 2}, {"id": 9, "label": "AT&T BELL LABS", "type": "organization", "description": "Institution where Vladimir Vapnik developed Support Vector Machines.", "community": 0, "degree": 1}, {"id": 10, "label": "SUPPORT VECTOR MACHINES", "type": "algorithm", "description": "Algorithm for finding optimal decision boundaries using the kernel trick.", "community": 0, "degree": 3}, {"id": 11, "label": "KERNEL TRICK", "type": "concept", "description": "A technique used in Support Vector Machines.", "community": 0, "degree": 1}, {"id": 12, "label": "TIANQI CHEN", "type": "person", "description": "Created XGBoost.", "community": 0, "degree": 1}, {"id": 13, "label": "XGBOOST", "type": "algorithm", "description": "A gradient boosting framework that dominated Kaggle competitions and became the go-to algorithm for tabular data.", "community": 0, "degree": 3}, {"id": 14, "label": "KAGGLE COMPETITIONS", "type": "event", "description": "Competitions where XGBoost dominated.", "community": 0, "degree": 1}, {"id": 15, "label": "TABULAR DATA", "type": "concept", "description": "A type of data for which XGBoost is a go-to algorithm.", "community": 0, "degree": 1}, {"id": 16, "label": "UNSUPERVISED LEARNING", "type": "concept", "description": "A type of Machine Learning that discovers hidden patterns.", "community": 0, "degree": 3}, {"id": 17, "label": "STUART LLOYD", "type": "person", "description": "Proposed K-Means clustering.", "community": 0, "degree": 2}, {"id": 18, "label": "BELL LABS", "type": "organization", "description": "Institution where Stuart Lloyd proposed K-Means clustering.", "community": 0, "degree": 1}, {"id": 19, "label": "K-MEANS CLUSTERING", "type": "algorithm", "description": "Clustering algorithm proposed for signal processing.", "community": 0, "degree": 3}, {"id": 20, "label": "SIGNAL PROCESSING", "type": "concept", "description": "A field for which K-Means clustering was proposed.", "community": 0, "degree": 1}, {"id": 21, "label": "KARL PEARSON", "type": "person", "description": "Invented Principal Component Analysis.", "community": 0, "degree": 1}, {"id": 22, "label": "PRINCIPAL COMPONENT ANALYSIS", "type": "algorithm", "description": "Algorithm invented for dimensionality reduction.", "community": 0, "degree": 3}, {"id": 23, "label": "DIMENSIONALITY REDUCTION", "type": "concept", "description": "A task for which Principal Component Analysis is used.", "community": 0, "degree": 1}, {"id": 24, "label": "LAURENS VAN DER MAATEN", "type": "person", "description": "Co-created t-SNE.", "community": 0, "degree": 2}, {"id": 25, "label": "GEOFFREY HINTON", "type": "person", "description": "Co-created t-SNE and AlexNet, and is a Godfather of Deep Learning.", "community": 0, "degree": 4}, {"id": 26, "label": "T-SNE", "type": "algorithm", "description": "Algorithm for visualizing high-dimensional data.", "community": 0, "degree": 2}, {"id": 27, "label": "HIGH-DIMENSIONAL DATA", "type": "concept", "description": "Data for which t-SNE is used for visualization.", "community": 0, "degree": 1}, {"id": 28, "label": "DEEP LEARNING", "type": "concept", "description": "A field that transformed Machine Learning after 2012.", "community": 0, "degree": 3}, {"id": 29, "label": "YANN LECUN", "type": "person", "description": "A Godfather of Deep Learning.", "community": 0, "degree": 2}, {"id": 30, "label": "YOSHUA BENGIO", "type": "person", "description": "A Godfather of Deep Learning.", "community": 0, "degree": 2}, {"id": 31, "label": "2018 TURING AWARD", "type": "event", "description": "Award received by Geoffrey Hinton, Yann LeCun, and Yoshua Bengio.", "community": 0, "degree": 3}, {"id": 32, "label": "ALEX KRIZHEVSKY", "type": "person", "description": "Co-created AlexNet.", "community": 0, "degree": 1}, {"id": 33, "label": "ALEXNET", "type": "algorithm", "description": "Algorithm that won ImageNet and sparked the deep learning revolution.", "community": 0, "degree": 4}, {"id": 34, "label": "IMAGENET", "type": "dataset", "description": "Dataset won by AlexNet.", "community": 0, "degree": 1}, {"id": 35, "label": "DEEP LEARNING REVOLUTION", "type": "event", "description": "An event sparked by AlexNet.", "community": 0, "degree": 1}, {"id": 36, "label": "KAIMING HE", "type": "person", "description": "Created ResNet.", "community": 0, "degree": 2}, {"id": 37, "label": "MICROSOFT RESEARCH", "type": "organization", "description": "Institution where Kaiming He created ResNet.", "community": 0, "degree": 3}, {"id": 38, "label": "RESNET", "type": "algorithm", "description": "Algorithm with skip connections enabling 152-layer networks.", "community": 0, "degree": 1}, {"id": 39, "label": "SKIP CONNECTIONS", "type": "concept", "description": "A feature of ResNet.", "community": 0, "degree": 0}, {"id": 40, "label": "ASHISH VASWANI", "type": "person", "description": "Created the Transformer architecture.", "community": 0, "degree": 2}, {"id": 41, "label": "GOOGLE", "type": "organization", "description": "Organization where Ashish Vaswani created the Transformer architecture and Jacob Devlin created BERT.", "community": 0, "degree": 2}, {"id": 42, "label": "TRANSFORMER ARCHITECTURE", "type": "technology", "description": "Architecture that revolutionized NLP.", "community": 0, "degree": 4}, {"id": 43, "label": "NLP", "type": "concept", "description": "Field revolutionized by the Transformer architecture.", "community": 0, "degree": 1}, {"id": 44, "label": "BERT", "type": "algorithm", "description": "Algorithm for language understanding.", "community": 0, "degree": 3}, {"id": 45, "label": "JACOB DEVLIN", "type": "person", "description": "Created BERT.", "community": 0, "degree": 2}, {"id": 46, "label": "LANGUAGE UNDERSTANDING", "type": "concept", "description": "A task for which BERT is used.", "community": 0, "degree": 1}, {"id": 47, "label": "GPT", "type": "algorithm", "description": "Algorithm for text generation.", "community": 0, "degree": 3}, {"id": 48, "label": "OPENAI", "type": "organization", "description": "Organization that developed GPT.", "community": 0, "degree": 1}, {"id": 49, "label": "TEXT GENERATION", "type": "concept", "description": "A task for which GPT is used.", "community": 0, "degree": 1}, {"id": 50, "label": "CHATGPT", "type": "algorithm", "description": "A modern large language model.", "community": 0, "degree": 1}, {"id": 51, "label": "MODERN LARGE LANGUAGE MODELS", "type": "concept", "description": "A category of models including ChatGPT.", "community": 0, "degree": 1}, {"id": 52, "label": "MODEL EVALUATION", "type": "concept", "description": "The process of assessing the performance of machine learning models.", "community": 0, "degree": 7}, {"id": 53, "label": "ACCURACY", "type": "tool", "description": "A metric for model evaluation.", "community": 0, "degree": 2}, {"id": 54, "label": "PRECISION", "type": "tool", "description": "A metric for model evaluation.", "community": 0, "degree": 2}, {"id": 55, "label": "RECALL", "type": "tool", "description": "A metric for model evaluation.", "community": 0, "degree": 2}, {"id": 56, "label": "F1-SCORE", "type": "tool", "description": "A metric for model evaluation.", "community": 0, "degree": 2}, {"id": 57, "label": "CLASSIFICATION", "type": "concept", "description": "A type of machine learning task for which accuracy, precision, recall, and F1-score are used.", "community": 0, "degree": 4}, {"id": 58, "label": "MAE", "type": "tool", "description": "A metric for model evaluation.", "community": 0, "degree": 2}, {"id": 59, "label": "RMSE", "type": "tool", "description": "A metric for model evaluation.", "community": 0, "degree": 2}, {"id": 60, "label": "R-SQUARED", "type": "tool", "description": "A metric for model evaluation.", "community": 0, "degree": 2}, {"id": 61, "label": "REGRESSION", "type": "concept", "description": "A type of machine learning task for which MAE, RMSE, and R-squared are used.", "community": 0, "degree": 3}, {"id": 62, "label": "CROSS-VALIDATION", "type": "tool", "description": "A method to prevent overfitting by testing on multiple data splits.", "community": 0, "degree": 2}, {"id": 63, "label": "K-FOLD VALIDATION", "type": "tool", "description": "A specific type of cross-validation.", "community": 0, "degree": 1}, {"id": 64, "label": "OVERFITTING", "type": "concept", "description": "A problem that cross-validation helps to prevent.", "community": 0, "degree": 1}, {"id": 65, "label": "DATA SCIENCE", "type": "concept", "description": "Combines statistics, programming, and domain expertise to extract insights from data.", "community": 0, "degree": 16}, {"id": 66, "label": "HARVARD BUSINESS REVIEW", "type": "organization", "description": "Publication that called Data Scientist the sexiest job of the 21st century.", "community": 0, "degree": 4}, {"id": 67, "label": "DATA SCIENTIST", "type": "concept", "description": "The sexiest job of the 21st century in 2012.", "community": 0, "degree": 1}, {"id": 68, "label": "THOMAS DAVENPORT", "type": "person", "description": "Co-author of the HBR article on Data Scientist.", "community": 0, "degree": 1}, {"id": 69, "label": "DJ PATIL", "type": "person", "description": "Co-author of the HBR article on Data Scientist.", "community": 0, "degree": 1}, {"id": 70, "label": "PYTHON", "type": "technology", "description": "Dominant programming language in data science.", "community": 0, "degree": 6}, {"id": 71, "label": "GUIDO VAN ROSSUM", "type": "person", "description": "Creator of Python.", "community": 0, "degree": 1}, {"id": 72, "label": "NUMPY", "type": "tool", "description": "Python library for numerical computing.", "community": 0, "degree": 3}, {"id": 73, "label": "TRAVIS OLIPHANT", "type": "person", "description": "Creator of NumPy.", "community": 0, "degree": 1}, {"id": 74, "label": "PANDAS", "type": "tool", "description": "Python library for data manipulation.", "community": 0, "degree": 3}, {"id": 75, "label": "WES MCKINNEY", "type": "person", "description": "Creator of Pandas.", "community": 0, "degree": 1}, {"id": 76, "label": "SCIKIT-LEARN", "type": "tool", "description": "Python library for machine learning.", "community": 0, "degree": 3}, {"id": 77, "label": "DAVID COURNAPEAU", "type": "person", "description": "Creator of Scikit-learn.", "community": 0, "degree": 1}, {"id": 78, "label": "MATPLOTLIB", "type": "tool", "description": "Python library for visualization.", "community": 0, "degree": 2}, {"id": 79, "label": "JUPYTER NOTEBOOKS", "type": "tool", "description": "Standard interactive environment for data science.", "community": 0, "degree": 2}, {"id": 80, "label": "FERNANDO PEREZ", "type": "person", "description": "Creator of Jupyter Notebooks.", "community": 0, "degree": 1}, {"id": 81, "label": "DATA ENGINEERING STACK", "type": "concept", "description": "Powers production systems in data science.", "community": 0, "degree": 4}, {"id": 82, "label": "APACHE SPARK", "type": "tool", "description": "Handles distributed data processing.", "community": 0, "degree": 4}, {"id": 83, "label": "MATEI ZAHARIA", "type": "person", "description": "Creator of Apache Spark.", "community": 0, "degree": 1}, {"id": 84, "label": "APACHE KAFKA", "type": "tool", "description": "Enables real-time streaming.", "community": 0, "degree": 4}, {"id": 85, "label": "JAY KREPS", "type": "person", "description": "Creator of Apache Kafka.", "community": 0, "degree": 1}, {"id": 86, "label": "LINKEDIN", "type": "organization", "description": "Company where Jay Kreps worked on Apache Kafka.", "community": 0, "degree": 1}, {"id": 87, "label": "APACHE AIRFLOW", "type": "tool", "description": "Orchestrates data pipelines using directed acyclic graphs.", "community": 0, "degree": 5}, {"id": 88, "label": "MAXIME BEAUCHEMIN", "type": "person", "description": "Creator of Apache Airflow.", "community": 0, "degree": 1}, {"id": 89, "label": "AIRBNB", "type": "organization", "description": "Company where Maxime Beauchemin worked on Apache Airflow.", "community": 0, "degree": 1}, {"id": 90, "label": "DIRECTED ACYCLIC GRAPHS", "type": "concept", "description": "Structure used by Apache Airflow to orchestrate pipelines.", "community": 0, "degree": 1}, {"id": 91, "label": "CLOUD DATA WAREHOUSES", "type": "concept", "description": "Transformed data storage.", "community": 0, "degree": 3}, {"id": 92, "label": "SNOWFLAKE", "type": "tool", "description": "Cloud data warehouse that separated compute from storage.", "community": 0, "degree": 3}, {"id": 93, "label": "BENOIT DAGEVILLE", "type": "person", "description": "Founder of Snowflake.", "community": 0, "degree": 1}, {"id": 94, "label": "GOOGLE BIGQUERY", "type": "tool", "description": "Offers serverless analytics.", "community": 0, "degree": 2}, {"id": 95, "label": "DATABRICKS", "type": "organization", "description": "Champions the data lakehouse architecture with Delta Lake.", "community": 0, "degree": 4}, {"id": 96, "label": "SPARK CREATORS", "type": "person", "description": "Founders of Databricks.", "community": 0, "degree": 1}, {"id": 97, "label": "DATA LAKEHOUSE ARCHITECTURE", "type": "concept", "description": "Architecture championed by Databricks.", "community": 0, "degree": 2}, {"id": 98, "label": "DELTA LAKE", "type": "tool", "description": "Component of the data lakehouse architecture.", "community": 0, "degree": 2}, {"id": 99, "label": "AI APPLICATIONS", "type": "concept", "description": "Applications that utilize advanced AI techniques.", "community": 0, "degree": 2}, {"id": 100, "label": "RETRIEVAL-AUGMENTED GENERATION", "type": "concept", "description": "Combines LLMs with external knowledge retrieval.", "community": 0, "degree": 6}, {"id": 101, "label": "LLMS", "type": "technology", "description": "Large Language Models used in RAG.", "community": 0, "degree": 1}, {"id": 102, "label": "VECTOR SIMILARITY SEARCH", "type": "algorithm", "description": "Traditional method used in RAG.", "community": 0, "degree": 1}, {"id": 103, "label": "PINECONE", "type": "tool", "description": "Database used for vector similarity search in RAG.", "community": 0, "degree": 1}, {"id": 104, "label": "WEAVIATE", "type": "tool", "description": "Database used for vector similarity search in RAG.", "community": 0, "degree": 1}, {"id": 105, "label": "CHROMADB", "type": "tool", "description": "Database used for vector similarity search in RAG.", "community": 0, "degree": 1}, {"id": 106, "label": "GRAPHRAG", "type": "concept", "description": "AI technique that builds knowledge graphs instead of simple vectors.", "community": 0, "degree": 8}, {"id": 107, "label": "KNOWLEDGE GRAPHS", "type": "concept", "description": "Data structure used by GraphRAG.", "community": 0, "degree": 1}, {"id": 108, "label": "VECTORS", "type": "concept", "description": "Data representation used in traditional RAG.", "community": 0, "degree": 1}, {"id": 109, "label": "MULTI-HOP REASONING", "type": "concept", "description": "Capability enabled by GraphRAG.", "community": 0, "degree": 1}, {"id": 110, "label": "THEMATIC ANALYSIS", "type": "concept", "description": "Capability enabled by GraphRAG.", "community": 0, "degree": 1}, {"id": 111, "label": "LEIDEN ALGORITHM", "type": "algorithm", "description": "Used by GraphRAG for community detection.", "community": 0, "degree": 1}, {"id": 112, "label": "HIERARCHICAL SUMMARIES", "type": "concept", "description": "Generated by GraphRAG for global search.", "community": 0, "degree": 2}, {"id": 113, "label": "GLOBAL SEARCH", "type": "concept", "description": "Capability enabled by hierarchical summaries in GraphRAG.", "community": 0, "degree": 1}, {"id": 114, "label": "STATISTICS", "type": "concept", "description": "Field combined in Data Science.", "community": 0, "degree": 2}, {"id": 115, "label": "PROGRAMMING", "type": "concept", "description": "Field combined in Data Science.", "community": 0, "degree": 1}, {"id": 116, "label": "DOMAIN EXPERTISE", "type": "concept", "description": "Field combined in Data Science.", "community": 0, "degree": 1}, {"id": 117, "label": "2012", "type": "event", "description": "Year HBR article was published.", "community": 0, "degree": 1}, {"id": 118, "label": "2024", "type": "event", "description": "Year GraphRAG was created.", "community": 0, "degree": 1}], "edges": [{"source": 0, "target": 1, "weight": 1, "descriptions": ["pioneered"]}, {"source": 0, "target": 3, "weight": 1, "descriptions": ["is_a_category_of"]}, {"source": 0, "target": 16, "weight": 1, "descriptions": ["is_a_category_of"]}, {"source": 1, "target": 2, "weight": 1, "descriptions": ["works_at"]}, {"source": 3, "target": 6, "weight": 1, "descriptions": ["is_a_type_of"]}, {"source": 3, "target": 10, "weight": 1, "descriptions": ["is_a_type_of"]}, {"source": 4, "target": 6, "weight": 1, "descriptions": ["created"]}, {"source": 4, "target": 5, "weight": 1, "descriptions": ["works_at"]}, {"source": 5, "target": 82, "weight": 1, "descriptions": ["created at"]}, {"source": 6, "target": 7, "weight": 1, "descriptions": ["builds"]}, {"source": 8, "target": 10, "weight": 1, "descriptions": ["developed"]}, {"source": 8, "target": 9, "weight": 1, "descriptions": ["works_at"]}, {"source": 10, "target": 11, "weight": 1, "descriptions": ["uses"]}, {"source": 12, "target": 13, "weight": 1, "descriptions": ["created"]}, {"source": 13, "target": 14, "weight": 1, "descriptions": ["dominated"]}, {"source": 13, "target": 15, "weight": 1, "descriptions": ["is_go_to_algorithm_for"]}, {"source": 16, "target": 19, "weight": 1, "descriptions": ["is_a_type_of"]}, {"source": 16, "target": 22, "weight": 1, "descriptions": ["is_a_type_of"]}, {"source": 17, "target": 19, "weight": 1, "descriptions": ["proposed"]}, {"source": 17, "target": 18, "weight": 1, "descriptions": ["works_at"]}, {"source": 19, "target": 20, "weight": 1, "descriptions": ["used_for"]}, {"source": 21, "target": 22, "weight": 1, "descriptions": ["invented"]}, {"source": 22, "target": 23, "weight": 1, "descriptions": ["used_for"]}, {"source": 24, "target": 26, "weight": 1, "descriptions": ["co-created"]}, {"source": 24, "target": 27, "weight": 1, "descriptions": ["used_for"]}, {"source": 25, "target": 26, "weight": 1, "descriptions": ["co-created"]}, {"source": 25, "target": 33, "weight": 1, "descriptions": ["co-created"]}, {"source": 25, "target": 28, "weight": 1, "descriptions": ["is_godfather_of"]}, {"source": 25, "target": 31, "weight": 1, "descriptions": ["received"]}, {"source": 28, "target": 29, "weight": 1, "descriptions": ["is_godfather_of"]}, {"source": 28, "target": 30, "weight": 1, "descriptions": ["is_godfather_of"]}, {"source": 29, "target": 31, "weight": 1, "descriptions": ["received"]}, {"source": 30, "target": 31, "weight": 1, "descriptions": ["received"]}, {"source": 32, "target": 33, "weight": 1, "descriptions": ["co-created"]}, {"source": 33, "target": 34, "weight": 1, "descriptions": ["won"]}, {"source": 33, "target": 35, "weight": 1, "descriptions": ["sparked"]}, {"source": 36, "target": 38, "weight": 1, "descriptions": ["created"]}, {"source": 36, "target": 37, "weight": 1, "descriptions": ["works_at"]}, {"source": 37, "target": 106, "weight": 1, "descriptions": ["created"]}, {"source": 37, "target": 118, "weight": 1, "descriptions": ["year of creation"]}, {"source": 40, "target": 42, "weight": 1, "descriptions": ["created"]}, {"source": 40, "target": 41, "weight": 1, "descriptions": ["works_at"]}, {"source": 41, "target": 45, "weight": 1, "descriptions": ["works_at"]}, {"source": 42, "target": 43, "weight": 1, "descriptions": ["revolutionized"]}, {"source": 42, "target": 44, "weight": 1, "descriptions": ["enabled"]}, {"source": 42, "target": 47, "weight": 1, "descriptions": ["enabled"]}, {"source": 44, "target": 45, "weight": 1, "descriptions": ["created"]}, {"source": 44, "target": 46, "weight": 1, "descriptions": ["used_for"]}, {"source": 47, "target": 49, "weight": 1, "descriptions": ["used_for"]}, {"source": 47, "target": 48, "weight": 1, "descriptions": ["developed_by"]}, {"source": 50, "target": 51, "weight": 1, "descriptions": ["is_a"]}, {"source": 52, "target": 53, "weight": 1, "descriptions": ["is_metric_for"]}, {"source": 52, "target": 54, "weight": 1, "descriptions": ["is_metric_for"]}, {"source": 52, "target": 55, "weight": 1, "descriptions": ["is_metric_for"]}, {"source": 52, "target": 56, "weight": 1, "descriptions": ["is_metric_for"]}, {"source": 52, "target": 58, "weight": 1, "descriptions": ["is_metric_for"]}, {"source": 52, "target": 59, "weight": 1, "descriptions": ["is_metric_for"]}, {"source": 52, "target": 60, "weight": 1, "descriptions": ["is_metric_for"]}, {"source": 53, "target": 57, "weight": 1, "descriptions": ["used_for"]}, {"source": 54, "target": 57, "weight": 1, "descriptions": ["used_for"]}, {"source": 55, "target": 57, "weight": 1, "descriptions": ["used_for"]}, {"source": 56, "target": 57, "weight": 1, "descriptions": ["used_for"]}, {"source": 58, "target": 61, "weight": 1, "descriptions": ["used_for"]}, {"source": 59, "target": 61, "weight": 1, "descriptions": ["used_for"]}, {"source": 60, "target": 61, "weight": 1, "descriptions": ["used_for"]}, {"source": 62, "target": 64, "weight": 1, "descriptions": ["prevents"]}, {"source": 62, "target": 63, "weight": 2, "descriptions": ["is_a_type_of", "is_a_type_of"]}, {"source": 65, "target": 114, "weight": 1, "descriptions": ["combines"]}, {"source": 65, "target": 115, "weight": 1, "descriptions": ["combines"]}, {"source": 65, "target": 116, "weight": 1, "descriptions": ["combines"]}, {"source": 65, "target": 70, "weight": 1, "descriptions": ["dominates"]}, {"source": 65, "target": 74, "weight": 1, "descriptions": ["used for data manipulation"]}, {"source": 65, "target": 76, "weight": 1, "descriptions": ["used for machine learning"]}, {"source": 65, "target": 78, "weight": 1, "descriptions": ["used for visualization"]}, {"source": 65, "target": 79, "weight": 1, "descriptions": ["provide interactive environment for"]}, {"source": 65, "target": 81, "weight": 1, "descriptions": ["powers production systems for"]}, {"source": 65, "target": 82, "weight": 1, "descriptions": ["handles distributed data processing for"]}, {"source": 65, "target": 84, "weight": 1, "descriptions": ["enables real-time streaming for"]}, {"source": 65, "target": 87, "weight": 1, "descriptions": ["orchestrates data pipelines for"]}, {"source": 65, "target": 91, "weight": 1, "descriptions": ["transformed storage for"]}, {"source": 65, "target": 92, "weight": 1, "descriptions": ["transformed storage for"]}, {"source": 65, "target": 94, "weight": 1, "descriptions": ["offers serverless analytics for"]}, {"source": 65, "target": 95, "weight": 1, "descriptions": ["champions architecture for"]}, {"source": 66, "target": 67, "weight": 1, "descriptions": ["called"]}, {"source": 66, "target": 68, "weight": 1, "descriptions": ["wrote for"]}, {"source": 66, "target": 69, "weight": 1, "descriptions": ["wrote for"]}, {"source": 66, "target": 117, "weight": 1, "descriptions": ["year of publication"]}, {"source": 70, "target": 71, "weight": 1, "descriptions": ["created"]}, {"source": 70, "target": 72, "weight": 1, "descriptions": ["is a library for"]}, {"source": 70, "target": 74, "weight": 1, "descriptions": ["is a library for"]}, {"source": 70, "target": 76, "weight": 1, "descriptions": ["is a library for"]}, {"source": 70, "target": 78, "weight": 1, "descriptions": ["is a library for"]}, {"source": 72, "target": 73, "weight": 1, "descriptions": ["created by"]}, {"source": 72, "target": 114, "weight": 1, "descriptions": ["used for numerical computing"]}, {"source": 74, "target": 75, "weight": 1, "descriptions": ["created by"]}, {"source": 76, "target": 77, "weight": 1, "descriptions": ["created by"]}, {"source": 79, "target": 80, "weight": 1, "descriptions": ["created by"]}, {"source": 81, "target": 82, "weight": 1, "descriptions": ["is part of"]}, {"source": 81, "target": 84, "weight": 1, "descriptions": ["is part of"]}, {"source": 81, "target": 87, "weight": 1, "descriptions": ["is part of"]}, {"source": 82, "target": 83, "weight": 1, "descriptions": ["created by"]}, {"source": 84, "target": 85, "weight": 1, "descriptions": ["created by"]}, {"source": 84, "target": 86, "weight": 1, "descriptions": ["created at"]}, {"source": 87, "target": 88, "weight": 1, "descriptions": ["created by"]}, {"source": 87, "target": 89, "weight": 1, "descriptions": ["created at"]}, {"source": 87, "target": 90, "weight": 1, "descriptions": ["uses"]}, {"source": 91, "target": 92, "weight": 1, "descriptions": ["is a"]}, {"source": 91, "target": 94, "weight": 1, "descriptions": ["is a"]}, {"source": 92, "target": 93, "weight": 1, "descriptions": ["founded by"]}, {"source": 95, "target": 96, "weight": 1, "descriptions": ["founded by"]}, {"source": 95, "target": 97, "weight": 1, "descriptions": ["champions"]}, {"source": 95, "target": 98, "weight": 1, "descriptions": ["champions"]}, {"source": 97, "target": 98, "weight": 1, "descriptions": ["is part of"]}, {"source": 99, "target": 100, "weight": 1, "descriptions": ["used for"]}, {"source": 99, "target": 106, "weight": 1, "descriptions": ["used for"]}, {"source": 100, "target": 101, "weight": 1, "descriptions": ["combines with"]}, {"source": 100, "target": 102, "weight": 1, "descriptions": ["uses"]}, {"source": 100, "target": 103, "weight": 1, "descriptions": ["uses database"]}, {"source": 100, "target": 104, "weight": 1, "descriptions": ["uses database"]}, {"source": 100, "target": 105, "weight": 1, "descriptions": ["uses database"]}, {"source": 106, "target": 107, "weight": 1, "descriptions": ["builds"]}, {"source": 106, "target": 108, "weight": 1, "descriptions": ["builds instead of"]}, {"source": 106, "target": 109, "weight": 1, "descriptions": ["enables"]}, {"source": 106, "target": 110, "weight": 1, "descriptions": ["enables"]}, {"source": 106, "target": 111, "weight": 1, "descriptions": ["uses for community detection"]}, {"source": 106, "target": 112, "weight": 1, "descriptions": ["generates"]}, {"source": 112, "target": 113, "weight": 1, "descriptions": ["enables"]}]};
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const container = document.getElementById('graph');
+
+    let width, height;
+    function resize() {
+        width = container.clientWidth;
+        height = container.clientHeight;
+        canvas.width = width * devicePixelRatio;
+        canvas.height = height * devicePixelRatio;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Build nodes and edges
+    const nodes = graphData.nodes.map((n, i) => ({
+        id: n.id, label: n.label, type: n.type || 'unknown',
+        description: n.description || '',
+        community: n.community !== undefined ? n.community : 0,
+        x: width/2 + (Math.random()-0.5)*width*0.7,
+        y: height/2 + (Math.random()-0.5)*height*0.7,
+        vx: 0, vy: 0,
+        radius: Math.min(8 + (n.degree || 0) * 0.8, 20),
+    }));
+
+    const nodeMap = {};
+    nodes.forEach(n => nodeMap[n.id] = n);
+
+    const edges = graphData.edges.map(e => ({
+        source: nodeMap[e.source], target: nodeMap[e.target],
+        weight: e.weight || 1, descriptions: e.descriptions || []
+    })).filter(e => e.source && e.target);
+
+    // Compute degree
+    edges.forEach(e => {
+        e.source.radius = Math.min((e.source.radius || 6) + 0.5, 22);
+        e.target.radius = Math.min((e.target.radius || 6) + 0.5, 22);
+    });
+
+    // Update stats
+    document.getElementById('nodeCount').textContent = nodes.length;
+    document.getElementById('edgeCount').textContent = edges.length;
+    document.getElementById('commCount').textContent = new Set(nodes.map(n=>n.community)).size;
+
+    // Build legend
+    const legend = document.getElementById('legend');
+    Object.entries(TYPE_COLORS).forEach(([type, color]) => {
+        const count = nodes.filter(n=>n.type===type).length;
+        if (count > 0) {
+            legend.innerHTML += `<div class="legend-item"><div class="legend-dot" style="background:${color}"></div>${type} (${count})</div>`;
+        }
+    });
+
+    // Community filter
+    const commSelect = document.getElementById('commSelect');
+    const comms = [...new Set(nodes.map(n=>n.community))].sort((a,b)=>a-b);
+    comms.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c; opt.textContent = `Community ${c} (${nodes.filter(n=>n.community===c).length})`;
+        commSelect.appendChild(opt);
+    });
+    let filterComm = 'all';
+    commSelect.addEventListener('change', e => { filterComm = e.target.value; });
+
+    // Force simulation
+    let selectedNode = null;
+    let dragNode = null;
+    let transform = { x: 0, y: 0, scale: 1 };
+
+    function simulate() {
+        const k = 0.01, repulsion = 3000, damping = 0.85, gravity = 0.02;
+
+        nodes.forEach(n1 => {
+            n1.vx *= damping; n1.vy *= damping;
+            // Gravity toward center
+            n1.vx += (width/2 - n1.x) * gravity;
+            n1.vy += (height/2 - n1.y) * gravity;
+
+            nodes.forEach(n2 => {
+                if (n1 === n2) return;
+                let dx = n1.x - n2.x, dy = n1.y - n2.y;
+                let dist = Math.sqrt(dx*dx + dy*dy) || 1;
+                let force = repulsion / (dist * dist);
+                n1.vx += (dx/dist) * force;
+                n1.vy += (dy/dist) * force;
+            });
+        });
+
+        edges.forEach(e => {
+            let dx = e.target.x - e.source.x;
+            let dy = e.target.y - e.source.y;
+            let dist = Math.sqrt(dx*dx + dy*dy) || 1;
+            let force = (dist - 120) * k;
+            let fx = (dx/dist) * force;
+            let fy = (dy/dist) * force;
+            e.source.vx += fx; e.source.vy += fy;
+            e.target.vx -= fx; e.target.vy -= fy;
+        });
+
+        nodes.forEach(n => {
+            if (n === dragNode) return;
+            n.x += n.vx * 0.1;
+            n.y += n.vy * 0.1;
+            n.x = Math.max(20, Math.min(width-20, n.x));
+            n.y = Math.max(20, Math.min(height-20, n.y));
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.save();
+        ctx.translate(transform.x, transform.y);
+        ctx.scale(transform.scale, transform.scale);
+
+        const visible = filterComm === 'all' ? nodes : nodes.filter(n => n.community === parseInt(filterComm));
+        const visibleIds = new Set(visible.map(n=>n.id));
+
+        // Draw edges
+        edges.forEach(e => {
+            if (!visibleIds.has(e.source.id) || !visibleIds.has(e.target.id)) return;
+            ctx.beginPath();
+            ctx.moveTo(e.source.x, e.source.y);
+            ctx.lineTo(e.target.x, e.target.y);
+            const isSelected = selectedNode && (e.source === selectedNode || e.target === selectedNode);
+            ctx.strokeStyle = isSelected ? '#60a5fa88' : '#ffffff15';
+            ctx.lineWidth = isSelected ? 2 : 0.5;
+            ctx.stroke();
+        });
+
+        // Draw nodes
+        visible.forEach(n => {
+            const isSelected = n === selectedNode;
+            const color = TYPE_COLORS[n.type] || TYPE_COLORS.unknown;
+
+            // Glow
+            if (isSelected) {
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.radius + 6, 0, Math.PI*2);
+                ctx.fillStyle = color + '33';
+                ctx.fill();
+            }
+
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.radius, 0, Math.PI*2);
+            ctx.fillStyle = isSelected ? color : color + 'cc';
+            ctx.fill();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = isSelected ? 2 : 0.5;
+            ctx.stroke();
+
+            // Label
+            if (n.radius > 7 || isSelected || transform.scale > 1.2) {
+                ctx.font = `${isSelected ? 'bold ' : ''}${Math.max(9, 11/transform.scale)}px Segoe UI`;
+                ctx.fillStyle = '#e0e6edcc';
+                ctx.textAlign = 'center';
+                ctx.fillText(n.label.length > 20 ? n.label.slice(0,18)+'..' : n.label, n.x, n.y + n.radius + 14);
+            }
+        });
+
+        ctx.restore();
+    }
+
+    function loop() {
+        simulate();
+        draw();
+        requestAnimationFrame(loop);
+    }
+    loop();
+
+    // Mouse interaction
+    function getMouseNode(mx, my) {
+        const sx = (mx - transform.x) / transform.scale;
+        const sy = (my - transform.y) / transform.scale;
+        for (let i = nodes.length-1; i >= 0; i--) {
+            const n = nodes[i];
+            const dx = sx - n.x, dy = sy - n.y;
+            if (dx*dx + dy*dy < n.radius*n.radius + 100) return n;
+        }
+        return null;
+    }
+
+    canvas.addEventListener('mousedown', e => {
+        const node = getMouseNode(e.offsetX, e.offsetY);
+        if (node) { dragNode = node; selectedNode = node; showEntityInfo(node); }
+    });
+    canvas.addEventListener('mousemove', e => {
+        if (dragNode) {
+            dragNode.x = (e.offsetX - transform.x) / transform.scale;
+            dragNode.y = (e.offsetY - transform.y) / transform.scale;
+        }
+    });
+    canvas.addEventListener('mouseup', () => { dragNode = null; });
+    canvas.addEventListener('wheel', e => {
+        e.preventDefault();
+        const factor = e.deltaY > 0 ? 0.9 : 1.1;
+        transform.scale *= factor;
+        transform.x = e.offsetX - (e.offsetX - transform.x) * factor;
+        transform.y = e.offsetY - (e.offsetY - transform.y) * factor;
+    });
+
+    function showEntityInfo(node) {
+        const neighbors = edges
+            .filter(e => e.source === node || e.target === node)
+            .map(e => {
+                const other = e.source === node ? e.target : e.source;
+                const desc = e.descriptions[0] || 'related';
+                return `<li>${other.label} <span style="color:#4b5563">- ${desc}</span></li>`;
+            });
+
+        const color = TYPE_COLORS[node.type] || TYPE_COLORS.unknown;
+        document.getElementById('entityInfo').innerHTML = `
+            <div class="entity-card">
+                <h4>${node.label}</h4>
+                <span class="type" style="background:${color}">${node.type}</span>
+                <p>${node.description}</p>
+                <p style="margin-top:6px;color:#60a5fa;font-size:11px;">Community ${node.community}</p>
+                ${neighbors.length ? `<div class="connections"><ul>${neighbors.join('')}</ul></div>` : ''}
+            </div>`;
+    }
+    </script>
+</body>
+</html>

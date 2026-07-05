@@ -1,0 +1,168 @@
+{
+  "num_documents": 3,
+  "num_chunks": 3,
+  "num_entities": 119,
+  "num_relationships": 127,
+  "num_communities": 15,
+  "communities": {
+    "0": [
+      "BENOIT DAGEVILLE",
+      "CLOUD DATA WAREHOUSES",
+      "DATA SCIENCE",
+      "DAVID COURNAPEAU",
+      "DOMAIN EXPERTISE",
+      "FERNANDO PEREZ",
+      "GOOGLE BIGQUERY",
+      "GUIDO VAN ROSSUM",
+      "JUPYTER NOTEBOOKS",
+      "MATPLOTLIB",
+      "NUMPY",
+      "PANDAS",
+      "PROGRAMMING",
+      "PYTHON",
+      "SCIKIT-LEARN",
+      "SNOWFLAKE",
+      "STATISTICS",
+      "TRAVIS OLIPHANT",
+      "WES MCKINNEY"
+    ],
+    "1": [
+      "ARTHUR SAMUEL",
+      "AT&T BELL LABS",
+      "DECISION TREES",
+      "IBM",
+      "KERNEL TRICK",
+      "LEO BREIMAN",
+      "MACHINE LEARNING",
+      "RANDOM FOREST",
+      "SUPERVISED LEARNING",
+      "SUPPORT VECTOR MACHINES",
+      "UC BERKELEY",
+      "VLADIMIR VAPNIK"
+    ],
+    "2": [
+      "2018 TURING AWARD",
+      "ALEX KRIZHEVSKY",
+      "ALEXNET",
+      "DEEP LEARNING",
+      "DEEP LEARNING REVOLUTION",
+      "GEOFFREY HINTON",
+      "HIGH-DIMENSIONAL DATA",
+      "IMAGENET",
+      "LAURENS VAN DER MAATEN",
+      "T-SNE",
+      "YANN LECUN",
+      "YOSHUA BENGIO"
+    ],
+    "3": [
+      "2024",
+      "GLOBAL SEARCH",
+      "GRAPHRAG",
+      "HIERARCHICAL SUMMARIES",
+      "KAIMING HE",
+      "KNOWLEDGE GRAPHS",
+      "LEIDEN ALGORITHM",
+      "MICROSOFT RESEARCH",
+      "MULTI-HOP REASONING",
+      "RESNET",
+      "THEMATIC ANALYSIS",
+      "VECTORS"
+    ],
+    "4": [
+      "ASHISH VASWANI",
+      "BERT",
+      "GOOGLE",
+      "GPT",
+      "JACOB DEVLIN",
+      "LANGUAGE UNDERSTANDING",
+      "NLP",
+      "OPENAI",
+      "TEXT GENERATION",
+      "TRANSFORMER ARCHITECTURE"
+    ],
+    "5": [
+      "ACCURACY",
+      "CLASSIFICATION",
+      "F1-SCORE",
+      "MAE",
+      "MODEL EVALUATION",
+      "PRECISION",
+      "R-SQUARED",
+      "RECALL",
+      "REGRESSION",
+      "RMSE"
+    ],
+    "6": [
+      "AIRBNB",
+      "APACHE AIRFLOW",
+      "APACHE KAFKA",
+      "APACHE SPARK",
+      "DATA ENGINEERING STACK",
+      "DIRECTED ACYCLIC GRAPHS",
+      "JAY KREPS",
+      "LINKEDIN",
+      "MATEI ZAHARIA",
+      "MAXIME BEAUCHEMIN"
+    ],
+    "7": [
+      "BELL LABS",
+      "DIMENSIONALITY REDUCTION",
+      "K-MEANS CLUSTERING",
+      "KARL PEARSON",
+      "PRINCIPAL COMPONENT ANALYSIS",
+      "SIGNAL PROCESSING",
+      "STUART LLOYD",
+      "UNSUPERVISED LEARNING"
+    ],
+    "8": [
+      "AI APPLICATIONS",
+      "CHROMADB",
+      "LLMS",
+      "PINECONE",
+      "RETRIEVAL-AUGMENTED GENERATION",
+      "VECTOR SIMILARITY SEARCH",
+      "WEAVIATE"
+    ],
+    "9": [
+      "2012",
+      "DATA SCIENTIST",
+      "DJ PATIL",
+      "HARVARD BUSINESS REVIEW",
+      "THOMAS DAVENPORT"
+    ],
+    "10": [
+      "KAGGLE COMPETITIONS",
+      "TABULAR DATA",
+      "TIANQI CHEN",
+      "XGBOOST"
+    ],
+    "11": [
+      "DATA LAKEHOUSE ARCHITECTURE",
+      "DATABRICKS",
+      "DELTA LAKE",
+      "SPARK CREATORS"
+    ],
+    "12": [
+      "CROSS-VALIDATION",
+      "K-FOLD VALIDATION",
+      "OVERFITTING"
+    ],
+    "13": [
+      "CHATGPT",
+      "MODERN LARGE LANGUAGE MODELS"
+    ],
+    "14": [
+      "SKIP CONNECTIONS"
+    ]
+  },
+  "entity_types": {
+    "concept": 36,
+    "person": 26,
+    "organization": 11,
+    "algorithm": 14,
+    "event": 5,
+    "dataset": 1,
+    "technology": 3,
+    "tool": 23
+  }
+}

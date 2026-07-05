@@ -1,0 +1,1409 @@
+[
+  {
+    "entities": [
+      {
+        "name": "MACHINE LEARNING",
+        "type": "concept",
+        "description": "A branch of artificial intelligence that enables computers to learn patterns from data without explicit programming."
+      },
+      {
+        "name": "ARTHUR SAMUEL",
+        "type": "person",
+        "description": "Pioneered Machine Learning."
+      },
+      {
+        "name": "IBM",
+        "type": "organization",
+        "description": "Organization where Arthur Samuel pioneered Machine Learning."
+      },
+      {
+        "name": "SUPERVISED LEARNING",
+        "type": "concept",
+        "description": "The most widely used category of Machine Learning."
+      },
+      {
+        "name": "LEO BREIMAN",
+        "type": "person",
+        "description": "Created Random Forest."
+      },
+      {
+        "name": "UC BERKELEY",
+        "type": "organization",
+        "description": "Institution where Leo Breiman created Random Forest."
+      },
+      {
+        "name": "RANDOM FOREST",
+        "type": "algorithm",
+        "description": "An ensemble method that builds multiple decision trees and merges predictions through voting."
+      },
+      {
+        "name": "DECISION TREES",
+        "type": "algorithm",
+        "description": "A type of algorithm used in Random Forest."
+      },
+      {
+        "name": "VLADIMIR VAPNIK",
+        "type": "person",
+        "description": "Developed Support Vector Machines."
+      },
+      {
+        "name": "AT&T BELL LABS",
+        "type": "organization",
+        "description": "Institution where Vladimir Vapnik developed Support Vector Machines."
+      },
+      {
+        "name": "SUPPORT VECTOR MACHINES",
+        "type": "algorithm",
+        "description": "Algorithm for finding optimal decision boundaries using the kernel trick."
+      },
+      {
+        "name": "KERNEL TRICK",
+        "type": "concept",
+        "description": "A technique used in Support Vector Machines."
+      },
+      {
+        "name": "TIANQI CHEN",
+        "type": "person",
+        "description": "Created XGBoost."
+      },
+      {
+        "name": "XGBOOST",
+        "type": "algorithm",
+        "description": "A gradient boosting framework that dominated Kaggle competitions and became the go-to algorithm for tabular data."
+      },
+      {
+        "name": "KAGGLE COMPETITIONS",
+        "type": "event",
+        "description": "Competitions where XGBoost dominated."
+      },
+      {
+        "name": "TABULAR DATA",
+        "type": "concept",
+        "description": "A type of data for which XGBoost is a go-to algorithm."
+      },
+      {
+        "name": "UNSUPERVISED LEARNING",
+        "type": "concept",
+        "description": "A type of Machine Learning that discovers hidden patterns."
+      },
+      {
+        "name": "STUART LLOYD",
+        "type": "person",
+        "description": "Proposed K-Means clustering."
+      },
+      {
+        "name": "BELL LABS",
+        "type": "organization",
+        "description": "Institution where Stuart Lloyd proposed K-Means clustering."
+      },
+      {
+        "name": "K-MEANS CLUSTERING",
+        "type": "algorithm",
+        "description": "Clustering algorithm proposed for signal processing."
+      },
+      {
+        "name": "SIGNAL PROCESSING",
+        "type": "concept",
+        "description": "A field for which K-Means clustering was proposed."
+      },
+      {
+        "name": "KARL PEARSON",
+        "type": "person",
+        "description": "Invented Principal Component Analysis."
+      },
+      {
+        "name": "PRINCIPAL COMPONENT ANALYSIS",
+        "type": "algorithm",
+        "description": "Algorithm invented for dimensionality reduction."
+      },
+      {
+        "name": "DIMENSIONALITY REDUCTION",
+        "type": "concept",
+        "description": "A task for which Principal Component Analysis is used."
+      },
+      {
+        "name": "LAURENS VAN DER MAATEN",
+        "type": "person",
+        "description": "Co-created t-SNE."
+      },
+      {
+        "name": "GEOFFREY HINTON",
+        "type": "person",
+        "description": "Co-created t-SNE and AlexNet, and is a Godfather of Deep Learning."
+      },
+      {
+        "name": "T-SNE",
+        "type": "algorithm",
+        "description": "Algorithm for visualizing high-dimensional data."
+      },
+      {
+        "name": "HIGH-DIMENSIONAL DATA",
+        "type": "concept",
+        "description": "Data for which t-SNE is used for visualization."
+      },
+      {
+        "name": "DEEP LEARNING",
+        "type": "concept",
+        "description": "A field that transformed Machine Learning after 2012."
+      },
+      {
+        "name": "YANN LECUN",
+        "type": "person",
+        "description": "A Godfather of Deep Learning."
+      },
+      {
+        "name": "YOSHUA BENGIO",
+        "type": "person",
+        "description": "A Godfather of Deep Learning."
+      },
+      {
+        "name": "2018 TURING AWARD",
+        "type": "event",
+        "description": "Award received by Geoffrey Hinton, Yann LeCun, and Yoshua Bengio."
+      },
+      {
+        "name": "ALEX KRIZHEVSKY",
+        "type": "person",
+        "description": "Co-created AlexNet."
+      },
+      {
+        "name": "ALEXNET",
+        "type": "algorithm",
+        "description": "Algorithm that won ImageNet and sparked the deep learning revolution."
+      },
+      {
+        "name": "IMAGENET",
+        "type": "dataset",
+        "description": "Dataset won by AlexNet."
+      },
+      {
+        "name": "DEEP LEARNING REVOLUTION",
+        "type": "event",
+        "description": "An event sparked by AlexNet."
+      },
+      {
+        "name": "KAIMING HE",
+        "type": "person",
+        "description": "Created ResNet."
+      },
+      {
+        "name": "MICROSOFT RESEARCH",
+        "type": "organization",
+        "description": "Institution where Kaiming He created ResNet."
+      },
+      {
+        "name": "RESNET",
+        "type": "algorithm",
+        "description": "Algorithm with skip connections enabling 152-layer networks."
+      },
+      {
+        "name": "SKIP CONNECTIONS",
+        "type": "concept",
+        "description": "A feature of ResNet."
+      },
+      {
+        "name": "ASHISH VASWANI",
+        "type": "person",
+        "description": "Created the Transformer architecture."
+      },
+      {
+        "name": "GOOGLE",
+        "type": "organization",
+        "description": "Organization where Ashish Vaswani created the Transformer architecture and Jacob Devlin created BERT."
+      },
+      {
+        "name": "TRANSFORMER ARCHITECTURE",
+        "type": "technology",
+        "description": "Architecture that revolutionized NLP."
+      },
+      {
+        "name": "NLP",
+        "type": "concept",
+        "description": "Field revolutionized by the Transformer architecture."
+      },
+      {
+        "name": "BERT",
+        "type": "algorithm",
+        "description": "Algorithm for language understanding."
+      },
+      {
+        "name": "JACOB DEVLIN",
+        "type": "person",
+        "description": "Created BERT."
+      },
+      {
+        "name": "LANGUAGE UNDERSTANDING",
+        "type": "concept",
+        "description": "A task for which BERT is used."
+      },
+      {
+        "name": "GPT",
+        "type": "algorithm",
+        "description": "Algorithm for text generation."
+      },
+      {
+        "name": "OPENAI",
+        "type": "organization",
+        "description": "Organization that developed GPT."
+      },
+      {
+        "name": "TEXT GENERATION",
+        "type": "concept",
+        "description": "A task for which GPT is used."
+      },
+      {
+        "name": "CHATGPT",
+        "type": "algorithm",
+        "description": "A modern large language model."
+      },
+      {
+        "name": "MODERN LARGE LANGUAGE MODELS",
+        "type": "concept",
+        "description": "A category of models including ChatGPT."
+      },
+      {
+        "name": "MODEL EVALUATION",
+        "type": "concept",
+        "description": "The process of assessing the performance of machine learning models."
+      },
+      {
+        "name": "ACCURACY",
+        "type": "tool",
+        "description": "A metric for model evaluation."
+      },
+      {
+        "name": "PRECISION",
+        "type": "tool",
+        "description": "A metric for model evaluation."
+      },
+      {
+        "name": "RECALL",
+        "type": "tool",
+        "description": "A metric for model evaluation."
+      },
+      {
+        "name": "F1-SCORE",
+        "type": "tool",
+        "description": "A metric for model evaluation."
+      },
+      {
+        "name": "CLASSIFICATION",
+        "type": "concept",
+        "description": "A type of machine learning task for which accuracy, precision, recall, and F1-score are used."
+      },
+      {
+        "name": "MAE",
+        "type": "tool",
+        "description": "A metric for model evaluation."
+      },
+      {
+        "name": "RMSE",
+        "type": "tool",
+        "description": "A metric for model evaluation."
+      },
+      {
+        "name": "R-SQUARED",
+        "type": "tool",
+        "description": "A metric for model evaluation."
+      },
+      {
+        "name": "REGRESSION",
+        "type": "concept",
+        "description": "A type of machine learning task for which MAE, RMSE, and R-squared are used."
+      },
+      {
+        "name": "CROSS-VALIDATION",
+        "type": "tool",
+        "description": "A method to prevent overfitting by testing on multiple data splits."
+      },
+      {
+        "name": "K-FOLD VALIDATION",
+        "type": "tool",
+        "description": "A specific type of cross-validation."
+      },
+      {
+        "name": "OVERFITTING",
+        "type": "concept",
+        "description": "A problem that cross-validation helps to prevent."
+      }
+    ],
+    "relationships": [
+      {
+        "source": "ARTHUR SAMUEL",
+        "target": "MACHINE LEARNING",
+        "description": "pioneered",
+        "weight": 1
+      },
+      {
+        "source": "ARTHUR SAMUEL",
+        "target": "IBM",
+        "description": "works_at",
+        "weight": 1
+      },
+      {
+        "source": "MACHINE LEARNING",
+        "target": "ARTIFICIAL INTELLIGENCE",
+        "description": "is_a_branch_of",
+        "weight": 1
+      },
+      {
+        "source": "SUPERVISED LEARNING",
+        "target": "MACHINE LEARNING",
+        "description": "is_a_category_of",
+        "weight": 1
+      },
+      {
+        "source": "LEO BREIMAN",
+        "target": "RANDOM FOREST",
+        "description": "created",
+        "weight": 1
+      },
+      {
+        "source": "LEO BREIMAN",
+        "target": "UC BERKELEY",
+        "description": "works_at",
+        "weight": 1
+      },
+      {
+        "source": "RANDOM FOREST",
+        "target": "DECISION TREES",
+        "description": "builds",
+        "weight": 1
+      },
+      {
+        "source": "RANDOM FOREST",
+        "target": "SUPERVISED LEARNING",
+        "description": "is_a_type_of",
+        "weight": 1
+      },
+      {
+        "source": "VLADIMIR VAPNIK",
+        "target": "SUPPORT VECTOR MACHINES",
+        "description": "developed",
+        "weight": 1
+      },
+      {
+        "source": "VLADIMIR VAPNIK",
+        "target": "AT&T BELL LABS",
+        "description": "works_at",
+        "weight": 1
+      },
+      {
+        "source": "SUPPORT VECTOR MACHINES",
+        "target": "KERNEL TRICK",
+        "description": "uses",
+        "weight": 1
+      },
+      {
+        "source": "SUPPORT VECTOR MACHINES",
+        "target": "SUPERVISED LEARNING",
+        "description": "is_a_type_of",
+        "weight": 1
+      },
+      {
+        "source": "TIANQI CHEN",
+        "target": "XGBOOST",
+        "description": "created",
+        "weight": 1
+      },
+      {
+        "source": "XGBOOST",
+        "target": "GRADIENT BOOSTING",
+        "description": "is_a_type_of",
+        "weight": 1
+      },
+      {
+        "source": "XGBOOST",
+        "target": "KAGGLE COMPETITIONS",
+        "description": "dominated",
+        "weight": 1
+      },
+      {
+        "source": "XGBOOST",
+        "target": "TABULAR DATA",
+        "description": "is_go_to_algorithm_for",
+        "weight": 1
+      },
+      {
+        "source": "UNSUPERVISED LEARNING",
+        "target": "MACHINE LEARNING",
+        "description": "is_a_category_of",
+        "weight": 1
+      },
+      {
+        "source": "STUART LLOYD",
+        "target": "K-MEANS CLUSTERING",
+        "description": "proposed",
+        "weight": 1
+      },
+      {
+        "source": "STUART LLOYD",
+        "target": "BELL LABS",
+        "description": "works_at",
+        "weight": 1
+      },
+      {
+        "source": "K-MEANS CLUSTERING",
+        "target": "SIGNAL PROCESSING",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "K-MEANS CLUSTERING",
+        "target": "UNSUPERVISED LEARNING",
+        "description": "is_a_type_of",
+        "weight": 1
+      },
+      {
+        "source": "KARL PEARSON",
+        "target": "PRINCIPAL COMPONENT ANALYSIS",
+        "description": "invented",
+        "weight": 1
+      },
+      {
+        "source": "PRINCIPAL COMPONENT ANALYSIS",
+        "target": "DIMENSIONALITY REDUCTION",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "PRINCIPAL COMPONENT ANALYSIS",
+        "target": "UNSUPERVISED LEARNING",
+        "description": "is_a_type_of",
+        "weight": 1
+      },
+      {
+        "source": "LAURENS VAN DER MAATEN",
+        "target": "T-SNE",
+        "description": "co-created",
+        "weight": 1
+      },
+      {
+        "source": "GEOFFREY HINTON",
+        "target": "T-SNE",
+        "description": "co-created",
+        "weight": 1
+      },
+      {
+        "source": "LAURENS VAN DER MAATEN",
+        "target": "HIGH-DIMENSIONAL DATA",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "GEOFFREY HINTON",
+        "target": "ALEXNET",
+        "description": "co-created",
+        "weight": 1
+      },
+      {
+        "source": "GEOFFREY HINTON",
+        "target": "DEEP LEARNING",
+        "description": "is_godfather_of",
+        "weight": 1
+      },
+      {
+        "source": "YANN LECUN",
+        "target": "DEEP LEARNING",
+        "description": "is_godfather_of",
+        "weight": 1
+      },
+      {
+        "source": "YOSHUA BENGIO",
+        "target": "DEEP LEARNING",
+        "description": "is_godfather_of",
+        "weight": 1
+      },
+      {
+        "source": "GEOFFREY HINTON",
+        "target": "2018 TURING AWARD",
+        "description": "received",
+        "weight": 1
+      },
+      {
+        "source": "YANN LECUN",
+        "target": "2018 TURING AWARD",
+        "description": "received",
+        "weight": 1
+      },
+      {
+        "source": "YOSHUA BENGIO",
+        "target": "2018 TURING AWARD",
+        "description": "received",
+        "weight": 1
+      },
+      {
+        "source": "ALEX KRIZHEVSKY",
+        "target": "ALEXNET",
+        "description": "co-created",
+        "weight": 1
+      },
+      {
+        "source": "ALEXNET",
+        "target": "IMAGENET",
+        "description": "won",
+        "weight": 1
+      },
+      {
+        "source": "ALEXNET",
+        "target": "DEEP LEARNING REVOLUTION",
+        "description": "sparked",
+        "weight": 1
+      },
+      {
+        "source": "KAIMING HE",
+        "target": "RESNET",
+        "description": "created",
+        "weight": 1
+      },
+      {
+        "source": "KAIMING HE",
+        "target": "MICROSOFT RESEARCH",
+        "description": "works_at",
+        "weight": 1
+      },
+      {
+        "source": "RESNET",
+        "target": "SKIPCONNECTIONS",
+        "description": "features",
+        "weight": 1
+      },
+      {
+        "source": "ASHISH VASWANI",
+        "target": "TRANSFORMER ARCHITECTURE",
+        "description": "created",
+        "weight": 1
+      },
+      {
+        "source": "ASHISH VASWANI",
+        "target": "GOOGLE",
+        "description": "works_at",
+        "weight": 1
+      },
+      {
+        "source": "TRANSFORMER ARCHITECTURE",
+        "target": "NLP",
+        "description": "revolutionized",
+        "weight": 1
+      },
+      {
+        "source": "TRANSFORMER ARCHITECTURE",
+        "target": "BERT",
+        "description": "enabled",
+        "weight": 1
+      },
+      {
+        "source": "TRANSFORMER ARCHITECTURE",
+        "target": "GPT",
+        "description": "enabled",
+        "weight": 1
+      },
+      {
+        "source": "JACOB DEVLIN",
+        "target": "BERT",
+        "description": "created",
+        "weight": 1
+      },
+      {
+        "source": "JACOB DEVLIN",
+        "target": "GOOGLE",
+        "description": "works_at",
+        "weight": 1
+      },
+      {
+        "source": "BERT",
+        "target": "LANGUAGE UNDERSTANDING",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "GPT",
+        "target": "TEXT GENERATION",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "GPT",
+        "target": "OPENAI",
+        "description": "developed_by",
+        "weight": 1
+      },
+      {
+        "source": "CHATGPT",
+        "target": "MODERN LARGE LANGUAGE MODELS",
+        "description": "is_a",
+        "weight": 1
+      },
+      {
+        "source": "ACCURACY",
+        "target": "MODEL EVALUATION",
+        "description": "is_metric_for",
+        "weight": 1
+      },
+      {
+        "source": "PRECISION",
+        "target": "MODEL EVALUATION",
+        "description": "is_metric_for",
+        "weight": 1
+      },
+      {
+        "source": "RECALL",
+        "target": "MODEL EVALUATION",
+        "description": "is_metric_for",
+        "weight": 1
+      },
+      {
+        "source": "F1-SCORE",
+        "target": "MODEL EVALUATION",
+        "description": "is_metric_for",
+        "weight": 1
+      },
+      {
+        "source": "ACCURACY",
+        "target": "CLASSIFICATION",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "PRECISION",
+        "target": "CLASSIFICATION",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "RECALL",
+        "target": "CLASSIFICATION",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "F1-SCORE",
+        "target": "CLASSIFICATION",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "MAE",
+        "target": "MODEL EVALUATION",
+        "description": "is_metric_for",
+        "weight": 1
+      },
+      {
+        "source": "RMSE",
+        "target": "MODEL EVALUATION",
+        "description": "is_metric_for",
+        "weight": 1
+      },
+      {
+        "source": "R-SQUARED",
+        "target": "MODEL EVALUATION",
+        "description": "is_metric_for",
+        "weight": 1
+      },
+      {
+        "source": "MAE",
+        "target": "REGRESSION",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "RMSE",
+        "target": "REGRESSION",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "R-SQUARED",
+        "target": "REGRESSION",
+        "description": "used_for",
+        "weight": 1
+      },
+      {
+        "source": "CROSS-VALIDATION",
+        "target": "OVERFITTING",
+        "description": "prevents",
+        "weight": 1
+      },
+      {
+        "source": "CROSS-VALIDATION",
+        "target": "K-FOLD VALIDATION",
+        "description": "is_a_type_of",
+        "weight": 1
+      },
+      {
+        "source": "K-FOLD VALIDATION",
+        "target": "CROSS-VALIDATION",
+        "description": "is_a_type_of",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "entities": [
+      {
+        "name": "DATA SCIENCE",
+        "type": "concept",
+        "description": "Combines statistics, programming, and domain expertise to extract insights from data."
+      },
+      {
+        "name": "HARVARD BUSINESS REVIEW",
+        "type": "organization",
+        "description": "Publication that called Data Scientist the sexiest job of the 21st century."
+      },
+      {
+        "name": "DATA SCIENTIST",
+        "type": "concept",
+        "description": "The sexiest job of the 21st century in 2012."
+      },
+      {
+        "name": "THOMAS DAVENPORT",
+        "type": "person",
+        "description": "Co-author of the HBR article on Data Scientist."
+      },
+      {
+        "name": "DJ PATIL",
+        "type": "person",
+        "description": "Co-author of the HBR article on Data Scientist."
+      },
+      {
+        "name": "PYTHON",
+        "type": "technology",
+        "description": "Dominant programming language in data science."
+      },
+      {
+        "name": "GUIDO VAN ROSSUM",
+        "type": "person",
+        "description": "Creator of Python."
+      },
+      {
+        "name": "NUMPY",
+        "type": "tool",
+        "description": "Python library for numerical computing."
+      },
+      {
+        "name": "TRAVIS OLIPHANT",
+        "type": "person",
+        "description": "Creator of NumPy."
+      },
+      {
+        "name": "PANDAS",
+        "type": "tool",
+        "description": "Python library for data manipulation."
+      },
+      {
+        "name": "WES MCKINNEY",
+        "type": "person",
+        "description": "Creator of Pandas."
+      },
+      {
+        "name": "SCIKIT-LEARN",
+        "type": "tool",
+        "description": "Python library for machine learning."
+      },
+      {
+        "name": "DAVID COURNAPEAU",
+        "type": "person",
+        "description": "Creator of Scikit-learn."
+      },
+      {
+        "name": "MATPLOTLIB",
+        "type": "tool",
+        "description": "Python library for visualization."
+      },
+      {
+        "name": "JUPYTER NOTEBOOKS",
+        "type": "tool",
+        "description": "Standard interactive environment for data science."
+      },
+      {
+        "name": "FERNANDO PEREZ",
+        "type": "person",
+        "description": "Creator of Jupyter Notebooks."
+      },
+      {
+        "name": "DATA ENGINEERING STACK",
+        "type": "concept",
+        "description": "Powers production systems in data science."
+      },
+      {
+        "name": "APACHE SPARK",
+        "type": "tool",
+        "description": "Handles distributed data processing."
+      },
+      {
+        "name": "MATEI ZAHARIA",
+        "type": "person",
+        "description": "Creator of Apache Spark."
+      },
+      {
+        "name": "UC BERKELEY",
+        "type": "organization",
+        "description": "Institution where Apache Spark was created."
+      },
+      {
+        "name": "APACHE KAFKA",
+        "type": "tool",
+        "description": "Enables real-time streaming."
+      },
+      {
+        "name": "JAY KREPS",
+        "type": "person",
+        "description": "Creator of Apache Kafka."
+      },
+      {
+        "name": "LINKEDIN",
+        "type": "organization",
+        "description": "Company where Jay Kreps worked on Apache Kafka."
+      },
+      {
+        "name": "APACHE AIRFLOW",
+        "type": "tool",
+        "description": "Orchestrates data pipelines using directed acyclic graphs."
+      },
+      {
+        "name": "MAXIME BEAUCHEMIN",
+        "type": "person",
+        "description": "Creator of Apache Airflow."
+      },
+      {
+        "name": "AIRBNB",
+        "type": "organization",
+        "description": "Company where Maxime Beauchemin worked on Apache Airflow."
+      },
+      {
+        "name": "DIRECTED ACYCLIC GRAPHS",
+        "type": "concept",
+        "description": "Structure used by Apache Airflow to orchestrate pipelines."
+      },
+      {
+        "name": "CLOUD DATA WAREHOUSES",
+        "type": "concept",
+        "description": "Transformed data storage."
+      },
+      {
+        "name": "SNOWFLAKE",
+        "type": "tool",
+        "description": "Cloud data warehouse that separated compute from storage."
+      },
+      {
+        "name": "BENOIT DAGEVILLE",
+        "type": "person",
+        "description": "Founder of Snowflake."
+      },
+      {
+        "name": "GOOGLE BIGQUERY",
+        "type": "tool",
+        "description": "Offers serverless analytics."
+      },
+      {
+        "name": "DATABRICKS",
+        "type": "organization",
+        "description": "Champions the data lakehouse architecture with Delta Lake."
+      },
+      {
+        "name": "SPARK CREATORS",
+        "type": "person",
+        "description": "Founders of Databricks."
+      },
+      {
+        "name": "DATA LAKEHOUSE ARCHITECTURE",
+        "type": "concept",
+        "description": "Architecture championed by Databricks."
+      },
+      {
+        "name": "DELTA LAKE",
+        "type": "tool",
+        "description": "Component of the data lakehouse architecture."
+      },
+      {
+        "name": "AI APPLICATIONS",
+        "type": "concept",
+        "description": "Applications that utilize advanced AI techniques."
+      },
+      {
+        "name": "RETRIEVAL-AUGMENTED GENERATION",
+        "type": "concept",
+        "description": "Combines LLMs with external knowledge retrieval."
+      },
+      {
+        "name": "LLMS",
+        "type": "technology",
+        "description": "Large Language Models used in RAG."
+      },
+      {
+        "name": "VECTOR SIMILARITY SEARCH",
+        "type": "algorithm",
+        "description": "Traditional method used in RAG."
+      },
+      {
+        "name": "PINECONE",
+        "type": "tool",
+        "description": "Database used for vector similarity search in RAG."
+      },
+      {
+        "name": "WEAVIATE",
+        "type": "tool",
+        "description": "Database used for vector similarity search in RAG."
+      },
+      {
+        "name": "CHROMADB",
+        "type": "tool",
+        "description": "Database used for vector similarity search in RAG."
+      },
+      {
+        "name": "MICROSOFT RESEARCH",
+        "type": "organization",
+        "description": "Created GraphRAG."
+      },
+      {
+        "name": "GRAPHRAG",
+        "type": "concept",
+        "description": "AI technique that builds knowledge graphs instead of simple vectors."
+      },
+      {
+        "name": "KNOWLEDGE GRAPHS",
+        "type": "concept",
+        "description": "Data structure used by GraphRAG."
+      },
+      {
+        "name": "VECTORS",
+        "type": "concept",
+        "description": "Data representation used in traditional RAG."
+      },
+      {
+        "name": "MULTI-HOP REASONING",
+        "type": "concept",
+        "description": "Capability enabled by GraphRAG."
+      },
+      {
+        "name": "THEMATIC ANALYSIS",
+        "type": "concept",
+        "description": "Capability enabled by GraphRAG."
+      },
+      {
+        "name": "LEIDEN ALGORITHM",
+        "type": "algorithm",
+        "description": "Used by GraphRAG for community detection."
+      },
+      {
+        "name": "HIERARCHICAL SUMMARIES",
+        "type": "concept",
+        "description": "Generated by GraphRAG for global search."
+      },
+      {
+        "name": "GLOBAL SEARCH",
+        "type": "concept",
+        "description": "Capability enabled by hierarchical summaries in GraphRAG."
+      },
+      {
+        "name": "STATISTICS",
+        "type": "concept",
+        "description": "Field combined in Data Science."
+      },
+      {
+        "name": "PROGRAMMING",
+        "type": "concept",
+        "description": "Field combined in Data Science."
+      },
+      {
+        "name": "DOMAIN EXPERTISE",
+        "type": "concept",
+        "description": "Field combined in Data Science."
+      },
+      {
+        "name": "2012",
+        "type": "event",
+        "description": "Year HBR article was published."
+      },
+      {
+        "name": "2024",
+        "type": "event",
+        "description": "Year GraphRAG was created."
+      }
+    ],
+    "relationships": [
+      {
+        "source": "DATA SCIENCE",
+        "target": "STATISTICS",
+        "description": "combines",
+        "weight": 1
+      },
+      {
+        "source": "DATA SCIENCE",
+        "target": "PROGRAMMING",
+        "description": "combines",
+        "weight": 1
+      },
+      {
+        "source": "DATA SCIENCE",
+        "target": "DOMAIN EXPERTISE",
+        "description": "combines",
+        "weight": 1
+      },
+      {
+        "source": "HARVARD BUSINESS REVIEW",
+        "target": "DATA SCIENTIST",
+        "description": "called",
+        "weight": 1
+      },
+      {
+        "source": "THOMAS DAVENPORT",
+        "target": "HARVARD BUSINESS REVIEW",
+        "description": "wrote for",
+        "weight": 1
+      },
+      {
+        "source": "DJ PATIL",
+        "target": "HARVARD BUSINESS REVIEW",
+        "description": "wrote for",
+        "weight": 1
+      },
+      {
+        "source": "PYTHON",
+        "target": "DATA SCIENCE",
+        "description": "dominates",
+        "weight": 1
+      },
+      {
+        "source": "GUIDO VAN ROSSUM",
+        "target": "PYTHON",
+        "description": "created",
+        "weight": 1
+      },
+      {
+        "source": "NUMPY",
+        "target": "PYTHON",
+        "description": "is a library for",
+        "weight": 1
+      },
+      {
+        "source": "NUMPY",
+        "target": "TRAVIS OLIPHANT",
+        "description": "created by",
+        "weight": 1
+      },
+      {
+        "source": "NUMPY",
+        "target": "STATISTICS",
+        "description": "used for numerical computing",
+        "weight": 1
+      },
+      {
+        "source": "PANDAS",
+        "target": "PYTHON",
+        "description": "is a library for",
+        "weight": 1
+      },
+      {
+        "source": "PANDAS",
+        "target": "WES MCKINNEY",
+        "description": "created by",
+        "weight": 1
+      },
+      {
+        "source": "PANDAS",
+        "target": "DATA SCIENCE",
+        "description": "used for data manipulation",
+        "weight": 1
+      },
+      {
+        "source": "SCIKIT-LEARN",
+        "target": "PYTHON",
+        "description": "is a library for",
+        "weight": 1
+      },
+      {
+        "source": "SCIKIT-LEARN",
+        "target": "DAVID COURNAPEAU",
+        "description": "created by",
+        "weight": 1
+      },
+      {
+        "source": "SCIKIT-LEARN",
+        "target": "DATA SCIENCE",
+        "description": "used for machine learning",
+        "weight": 1
+      },
+      {
+        "source": "MATPLOTLIB",
+        "target": "PYTHON",
+        "description": "is a library for",
+        "weight": 1
+      },
+      {
+        "source": "MATPLOTLIB",
+        "target": "DATA SCIENCE",
+        "description": "used for visualization",
+        "weight": 1
+      },
+      {
+        "source": "JUPYTER NOTEBOOKS",
+        "target": "FERNANDO PEREZ",
+        "description": "created by",
+        "weight": 1
+      },
+      {
+        "source": "JUPYTER NOTEBOOKS",
+        "target": "DATA SCIENCE",
+        "description": "provide interactive environment for",
+        "weight": 1
+      },
+      {
+        "source": "DATA ENGINEERING STACK",
+        "target": "DATA SCIENCE",
+        "description": "powers production systems for",
+        "weight": 1
+      },
+      {
+        "source": "APACHE SPARK",
+        "target": "MATEI ZAHARIA",
+        "description": "created by",
+        "weight": 1
+      },
+      {
+        "source": "APACHE SPARK",
+        "target": "UC BERKELEY",
+        "description": "created at",
+        "weight": 1
+      },
+      {
+        "source": "APACHE SPARK",
+        "target": "DATA ENGINEERING STACK",
+        "description": "is part of",
+        "weight": 1
+      },
+      {
+        "source": "APACHE SPARK",
+        "target": "DATA SCIENCE",
+        "description": "handles distributed data processing for",
+        "weight": 1
+      },
+      {
+        "source": "APACHE KAFKA",
+        "target": "JAY KREPS",
+        "description": "created by",
+        "weight": 1
+      },
+      {
+        "source": "APACHE KAFKA",
+        "target": "LINKEDIN",
+        "description": "created at",
+        "weight": 1
+      },
+      {
+        "source": "APACHE KAFKA",
+        "target": "DATA ENGINEERING STACK",
+        "description": "is part of",
+        "weight": 1
+      },
+      {
+        "source": "APACHE KAFKA",
+        "target": "DATA SCIENCE",
+        "description": "enables real-time streaming for",
+        "weight": 1
+      },
+      {
+        "source": "APACHE AIRFLOW",
+        "target": "MAXIME BEAUCHEMIN",
+        "description": "created by",
+        "weight": 1
+      },
+      {
+        "source": "APACHE AIRFLOW",
+        "target": "AIRBNB",
+        "description": "created at",
+        "weight": 1
+      },
+      {
+        "source": "APACHE AIRFLOW",
+        "target": "DATA ENGINEERING STACK",
+        "description": "is part of",
+        "weight": 1
+      },
+      {
+        "source": "APACHE AIRFLOW",
+        "target": "DATA SCIENCE",
+        "description": "orchestrates data pipelines for",
+        "weight": 1
+      },
+      {
+        "source": "APACHE AIRFLOW",
+        "target": "DIRECTED ACYCLIC GRAPHS",
+        "description": "uses",
+        "weight": 1
+      },
+      {
+        "source": "CLOUD DATA WAREHOUSES",
+        "target": "DATA SCIENCE",
+        "description": "transformed storage for",
+        "weight": 1
+      },
+      {
+        "source": "SNOWFLAKE",
+        "target": "BENOIT DAGEVILLE",
+        "description": "founded by",
+        "weight": 1
+      },
+      {
+        "source": "SNOWFLAKE",
+        "target": "CLOUD DATA WAREHOUSES",
+        "description": "is a",
+        "weight": 1
+      },
+      {
+        "source": "SNOWFLAKE",
+        "target": "DATA SCIENCE",
+        "description": "transformed storage for",
+        "weight": 1
+      },
+      {
+        "source": "GOOGLE BIGQUERY",
+        "target": "CLOUD DATA WAREHOUSES",
+        "description": "is a",
+        "weight": 1
+      },
+      {
+        "source": "GOOGLE BIGQUERY",
+        "target": "DATA SCIENCE",
+        "description": "offers serverless analytics for",
+        "weight": 1
+      },
+      {
+        "source": "DATABRICKS",
+        "target": "SPARK CREATORS",
+        "description": "founded by",
+        "weight": 1
+      },
+      {
+        "source": "DATABRICKS",
+        "target": "DATA LAKEHOUSE ARCHITECTURE",
+        "description": "champions",
+        "weight": 1
+      },
+      {
+        "source": "DATABRICKS",
+        "target": "DELTA LAKE",
+        "description": "champions",
+        "weight": 1
+      },
+      {
+        "source": "DATABRICKS",
+        "target": "DATA SCIENCE",
+        "description": "champions architecture for",
+        "weight": 1
+      },
+      {
+        "source": "DELTA LAKE",
+        "target": "DATA LAKEHOUSE ARCHITECTURE",
+        "description": "is part of",
+        "weight": 1
+      },
+      {
+        "source": "RETRIEVAL-AUGMENTED GENERATION",
+        "target": "AI APPLICATIONS",
+        "description": "used for",
+        "weight": 1
+      },
+      {
+        "source": "RETRIEVAL-AUGMENTED GENERATION",
+        "target": "LLMS",
+        "description": "combines with",
+        "weight": 1
+      },
+      {
+        "source": "RETRIEVAL-AUGMENTED GENERATION",
+        "target": "VECTOR SIMILARITY SEARCH",
+        "description": "uses",
+        "weight": 1
+      },
+      {
+        "source": "RETRIEVAL-AUGMENTED GENERATION",
+        "target": "PINECONE",
+        "description": "uses database",
+        "weight": 1
+      },
+      {
+        "source": "RETRIEVAL-AUGMENTED GENERATION",
+        "target": "WEAVIATE",
+        "description": "uses database",
+        "weight": 1
+      },
+      {
+        "source": "RETRIEVAL-AUGMENTED GENERATION",
+        "target": "CHROMADB",
+        "description": "uses database",
+        "weight": 1
+      },
+      {
+        "source": "MICROSOFT RESEARCH",
+        "target": "GRAPHRAG",
+        "description": "created",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG",
+        "target": "AI APPLICATIONS",
+        "description": "used for",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG",
+        "target": "KNOWLEDGE GRAPHS",
+        "description": "builds",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG",
+        "target": "VECTORS",
+        "description": "builds instead of",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG",
+        "target": "MULTI-HOP REASONING",
+        "description": "enables",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG",
+        "target": "THEMATIC ANALYSIS",
+        "description": "enables",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG",
+        "target": "LEIDEN ALGORITHM",
+        "description": "uses for community detection",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG",
+        "target": "HIERARCHICAL SUMMARIES",
+        "description": "generates",
+        "weight": 1
+      },
+      {
+        "source": "HIERARCHICAL SUMMARIES",
+        "target": "GLOBAL SEARCH",
+        "description": "enables",
+        "weight": 1
+      },
+      {
+        "source": "2012",
+        "target": "HARVARD BUSINESS REVIEW",
+        "description": "year of publication",
+        "weight": 1
+      },
+      {
+        "source": "2024",
+        "target": "MICROSOFT RESEARCH",
+        "description": "year of creation",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "entities": [],
+    "relationships": []
+  }
+]

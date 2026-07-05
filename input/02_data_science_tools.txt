@@ -1,0 +1,11 @@
+Data Science Tools, Pipelines, and the Modern Stack
+
+Data Science combines statistics, programming, and domain expertise to extract insights from data. The field gained mainstream attention when Harvard Business Review called Data Scientist the sexiest job of the 21st century in 2012, written by Thomas Davenport and DJ Patil.
+
+Python dominates data science, created by Guido van Rossum. Key libraries include NumPy by Travis Oliphant for numerical computing, Pandas by Wes McKinney for data manipulation, Scikit-learn by David Cournapeau for machine learning, and Matplotlib for visualization. Jupyter Notebooks by Fernando Perez provide the standard interactive environment.
+
+The data engineering stack powers production systems. Apache Spark, created by Matei Zaharia at UC Berkeley, handles distributed data processing. Apache Kafka by Jay Kreps at LinkedIn enables real-time streaming. Apache Airflow, created by Maxime Beauchemin at Airbnb, orchestrates data pipelines using directed acyclic graphs.
+
+Cloud data warehouses transformed storage. Snowflake, founded by Benoit Dageville, separated compute from storage. Google BigQuery offers serverless analytics. Databricks, founded by the Spark creators, champions the data lakehouse architecture with Delta Lake.
+
+For AI applications, Retrieval-Augmented Generation combines LLMs with external knowledge retrieval. Traditional RAG uses vector similarity search with databases like Pinecone, Weaviate, and ChromaDB. Microsoft Research created GraphRAG in 2024, which builds knowledge graphs instead of simple vectors, enabling multi-hop reasoning and thematic analysis that standard RAG cannot achieve. GraphRAG uses the Leiden algorithm for community detection and generates hierarchical summaries for global search capabilities.

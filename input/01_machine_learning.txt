@@ -1,0 +1,13 @@
+Machine Learning: Key Algorithms and Their Creators
+
+Machine Learning is a branch of artificial intelligence pioneered by Arthur Samuel at IBM in 1959. It enables computers to learn patterns from data without explicit programming.
+
+Supervised learning is the most widely used category. Leo Breiman at UC Berkeley created Random Forest in 2001, an ensemble method that builds multiple decision trees and merges predictions through voting. Vladimir Vapnik developed Support Vector Machines at AT&T Bell Labs in 1992, finding optimal decision boundaries using the kernel trick. Tianqi Chen created XGBoost in 2014, a gradient boosting framework that dominated Kaggle competitions and became the go-to algorithm for tabular data.
+
+Unsupervised learning discovers hidden patterns. Stuart Lloyd proposed K-Means clustering at Bell Labs in 1957 for signal processing. Karl Pearson invented Principal Component Analysis in 1901 for dimensionality reduction. Laurens van der Maaten and Geoffrey Hinton created t-SNE in 2008 for visualizing high-dimensional data.
+
+Deep learning transformed the field after 2012. Geoffrey Hinton, Yann LeCun, and Yoshua Bengio — the Godfathers of Deep Learning — received the 2018 Turing Award. Alex Krizhevsky and Geoffrey Hinton created AlexNet in 2012, winning ImageNet and sparking the deep learning revolution. Kaiming He at Microsoft Research created ResNet in 2015 with skip connections enabling 152-layer networks.
+
+The Transformer architecture by Ashish Vaswani at Google in 2017 revolutionized NLP. It enabled BERT by Jacob Devlin at Google in 2018 for language understanding, and GPT by OpenAI for text generation. These led to ChatGPT and modern large language models.
+
+Model evaluation relies on metrics like accuracy, precision, recall, F1-score for classification, and MAE, RMSE, R-squared for regression. Cross-validation, developed as K-fold validation, prevents overfitting by testing on multiple data splits.
