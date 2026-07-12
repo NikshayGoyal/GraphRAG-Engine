@@ -12,6 +12,9 @@ import streamlit as st
 import networkx as nx
 from pyvis.network import Network
 import tempfile
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ─── Page Config ───
 st.set_page_config(
