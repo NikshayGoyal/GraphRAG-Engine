@@ -84,7 +84,9 @@ python demo.py
 
 ## Interactive Dashboard
 
-Launch with `streamlit run app.py` to explore:
+**🔗 Live Demo: [graphrag-engine-nikshay.streamlit.app](https://graphrag-engine-nikshay.streamlit.app)**
+
+Launch locally with `streamlit run app.py` to explore:
 
 - **Knowledge Graph** — Interactive force-directed visualization with community filtering
 - **Search** — Query the graph using Local (entity-focused) or Global (thematic) search
