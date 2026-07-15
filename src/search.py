@@ -74,10 +74,13 @@ QUESTION: {query}
 
 Provide a detailed answer citing specific entities and relationships."""
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash-lite", contents=prompt
-    )
-    return response.text
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-lite", contents=prompt
+        )
+        return response.text
+    except Exception as e:
+        return f"**Error generating response:**\n{str(e)}\n\nPlease verify your GEMINI_API_KEY and try again."
 
 
 def global_search(
@@ -111,7 +114,10 @@ QUESTION: {query}
 
 Synthesize across all relevant communities. Highlight themes and connections."""
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash-lite", contents=prompt
-    )
-    return response.text
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-lite", contents=prompt
+        )
+        return response.text
+    except Exception as e:
+        return f"**Error generating response:**\n{str(e)}\n\nPlease verify your GEMINI_API_KEY and try again."
