@@ -2,6 +2,7 @@
 
 from google import genai
 import networkx as nx
+from .extraction import call_gemini
 
 
 def local_search(
@@ -27,7 +28,6 @@ def local_search(
     Returns:
         LLM-generated answer string.
     """
-    client = genai.Client(api_key=api_key)
 
     # Score entities by keyword overlap with query
     query_words = set(query.upper().split())
@@ -74,13 +74,10 @@ QUESTION: {query}
 
 Provide a detailed answer citing specific entities and relationships."""
 
-    try:
-        response = client.models.generate_content(
-            model="gemini-2.5-flash-lite", contents=prompt
-        )
-        return response.text
-    except Exception as e:
-        return f"**Error generating response:**\n{str(e)}\n\nPlease verify your GEMINI_API_KEY and try again."
+    response_text = call_gemini(prompt, api_key, retries=3)
+    if response_text:
+        return response_text
+    return "**Error generating response:** The Gemini API is currently experiencing high demand (503) or the API key is invalid. Please try again later."
 
 
 def global_search(
@@ -99,7 +96,6 @@ def global_search(
     Returns:
         LLM-generated answer string.
     """
-    client = genai.Client(api_key=api_key)
 
     summaries_text = "\n\n".join(
         [f"Community {cid}: {s}" for cid, s in community_summaries.items()]
@@ -114,10 +110,7 @@ QUESTION: {query}
 
 Synthesize across all relevant communities. Highlight themes and connections."""
 
-    try:
-        response = client.models.generate_content(
-            model="gemini-2.5-flash-lite", contents=prompt
-        )
-        return response.text
-    except Exception as e:
-        return f"**Error generating response:**\n{str(e)}\n\nPlease verify your GEMINI_API_KEY and try again."
+    response_text = call_gemini(prompt, api_key, retries=3)
+    if response_text:
+        return response_text
+    return "**Error generating response:** The Gemini API is currently experiencing high demand (503) or the API key is invalid. Please try again later."
