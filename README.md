@@ -1,7 +1,7 @@
 # GraphRAG Engine
 
 [![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://python.org)
-[![Gemini](https://img.shields.io/badge/Google_Gemini-API-4285F4?logo=google&logoColor=white)](https://ai.google.dev)
+[![Mistral AI](https://img.shields.io/badge/Mistral%20AI-API-FF7000?logo=mistral&logoColor=white)](https://mistral.ai)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io)
 [![NetworkX](https://img.shields.io/badge/NetworkX-Graph_Analysis-orange)](https://networkx.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -9,9 +9,9 @@
 > **A from-scratch implementation of Microsoft's GraphRAG architecture** — extracts entities & relationships from documents using LLMs, builds knowledge graphs, detects communities, and enables intelligent Local & Global search. Includes an interactive Streamlit dashboard.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Entities-119-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Relationships-127-purple?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Communities-15-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Entities-78+-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Relationships-81+-purple?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Communities-9+-green?style=for-the-badge" />
   <img src="https://img.shields.io/badge/API_Calls-~5-orange?style=for-the-badge" />
 </p>
 
@@ -50,7 +50,7 @@ Traditional RAG retrieves text chunks via vector similarity — it finds passage
 | Stage | Module | What Happens |
 |-------|--------|-------------|
 | Chunking | `src/chunking.py` | Split documents into overlapping segments |
-| Extraction | `src/extraction.py` | LLM extracts entities + relationships as JSON |
+| Extraction | `src/extraction.py` | Mistral AI extracts entities + relationships via strict JSON schemas |
 | Graph Build | `src/graph_builder.py` | Entities → nodes, relationships → weighted edges |
 | Communities | `src/community.py` | Detect clusters via greedy modularity optimization |
 | Search | `src/search.py` | Local (entity neighborhood) or Global (community synthesis) |
@@ -88,9 +88,10 @@ python demo.py
 
 Launch locally with `streamlit run app.py` to explore:
 
-- **Knowledge Graph** — Interactive force-directed visualization with community filtering
-- **Search** — Query the graph using Local (entity-focused) or Global (thematic) search
-- **Communities** — Explore all 15 detected thematic clusters
+- **Dynamic Document Upload** — Drag and drop your own text or PDF files to dynamically build a graph
+- **Knowledge Graph** — Interactive `vis.js` physics simulation with community filtering
+- **Search** — Query the graph using Local (entity-focused) or Global (thematic) search with traceable UI citations
+- **Communities** — Explore all detected thematic clusters
 - **Statistics** — Entity type distribution, top connected entities, community sizes
 
 ---
@@ -99,10 +100,10 @@ Launch locally with `streamlit run app.py` to explore:
 
 | Metric | Value |
 |--------|-------|
-| Documents Processed | 3 |
-| Entities Extracted | **119** |
-| Relationships Found | **127** |
-| Communities Detected | **15** |
+| Documents Processed | Dynamic (Uploads) |
+| Entities Extracted | **78+** |
+| Relationships Found | **81+** |
+| Communities Detected | **9+** |
 | Total API Calls | **~5** (vs 1000+ for Microsoft's GraphRAG) |
 
 ### Communities Discovered
@@ -156,7 +157,7 @@ GraphRAG-Engine/
 
 | Feature | Microsoft GraphRAG | This Implementation |
 |---------|-------------------|---------------------|
-| Entity Extraction | LLM + gleanings | LLM (Gemini) |
+| Entity Extraction | LLM + gleanings | Mistral AI + JSON Schemas |
 | Knowledge Graph | NetworkX | NetworkX |
 | Community Detection | Leiden Algorithm | Greedy Modularity |
 | Community Reports | LLM-generated | LLM-generated (batched) |
