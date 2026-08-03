@@ -248,8 +248,44 @@ with st.sidebar:
     """)
     st.divider()
     st.markdown("### Pipeline Stats")
-    st.metric("API Calls Used", "~5")
-    st.metric("vs Microsoft's", "~1000+")
-    st.caption("200x more efficient")
+    st.metric("Summarization Calls", "1")
+    st.metric("Without Batching", "15+")
+    st.caption("~93% reduction via single batched prompt")
     st.divider()
     st.markdown("[GitHub Repo](https://github.com/NikshayGoyal/GraphRAG-Engine)")
+
+    st.divider()
+    st.markdown("### 📂 Try with Your Documents")
+    st.caption("Upload your own .txt files to build a fresh knowledge graph.")
+    uploaded_files = st.file_uploader(
+        "Upload documents",
+        type=["txt"],
+        accept_multiple_files=True,
+        help="Each .txt file becomes a document in your knowledge graph"
+    )
+
+    if uploaded_files:
+        if st.button("🚀 Build Knowledge Graph", type="primary", use_container_width=True):
+            import shutil
+
+            # Clear and repopulate documents directory
+            docs_dir = "data/documents"
+            if os.path.exists(docs_dir):
+                shutil.rmtree(docs_dir)
+            os.makedirs(docs_dir, exist_ok=True)
+
+            for file in uploaded_files:
+                with open(os.path.join(docs_dir, file.name), "wb") as f:
+                    f.write(file.read())
+
+            st.info(f"📄 {len(uploaded_files)} document(s) uploaded. Building graph...")
+
+            with st.spinner("🔄 Running pipeline — this takes 30–60 seconds..."):
+                try:
+                    from pipeline import run_pipeline
+                    run_pipeline()
+                    load_graph_data.clear()  # Clear cached data so new graph loads
+                    st.success("✅ Knowledge graph built! Refreshing...")
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Pipeline error: {e}")
