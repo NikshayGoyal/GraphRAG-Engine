@@ -235,23 +235,32 @@ with tab2:
                 else:
                     result = global_search(query, summaries, api_key)
 
-            st.markdown("### Answer")
             try:
-                # Handle stringified JSON
                 if isinstance(result, str):
                     import json
                     res_json = json.loads(result)
                 else:
                     res_json = result
-                    
-                st.markdown(res_json.get("answer", str(result)))
-                
+
+                answer_text = res_json.get("answer", str(result))
                 citations = res_json.get("cited_entities", [])
+
+                citation_html = ""
                 if citations:
-                    st.markdown("#### Cited Entities")
-                    for c in citations:
-                    citation_html = '<div class="citations-label">Cited Entities</div>' + "".join([f'<div class="citation-row"><div class="citation-entity">{c.get("entity")}</div><div class="citation-detail">{c.get("details")}</div></div>' for c in citations])
-                st.markdown(f'<div class="answer-card"><div class="answer-label">Answer</div><div>{answer_text}</div>{citation_html}</div>', unsafe_allow_html=True)
+                    rows = "".join(
+                        f'<div class="citation-row"><span class="citation-entity">{c.get("entity","")}</span><span class="citation-detail">{c.get("details","")}</span></div>'
+                        for c in citations
+                    )
+                    citation_html = f'<div class="citations-label">Cited Entities</div>{rows}'
+
+                st.markdown(f"""
+                <div class="answer-card">
+                    <div class="answer-label">Answer</div>
+                    <div>{answer_text}</div>
+                    {citation_html}
+                </div>
+                """, unsafe_allow_html=True)
+
             except Exception:
                 st.markdown(f'<div class="answer-card"><div class="answer-label">Answer</div>{result}</div>', unsafe_allow_html=True)
     st.markdown("""
