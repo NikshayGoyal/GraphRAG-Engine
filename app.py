@@ -23,143 +23,82 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ─── Custom CSS ───
+# ─── Design System CSS ───
 st.markdown("""
 <style>
-    .main-header {
-        font-size: 2.2rem; font-weight: 700;
-        background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        margin-bottom: 0;
-    }
-    .metric-card {
-        background: #1e293b; border-radius: 12px; padding: 20px;
-        border: 1px solid #334155; text-align: center;
-    }
-    .metric-value { font-size: 2rem; font-weight: 700; color: #60a5fa; }
-    .metric-label { font-size: 0.85rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
-    .stTabs [data-baseweb="tab-list"] { gap: 8px; }
-    .stTabs [data-baseweb="tab"] {
-        background-color: #1e293b; border-radius: 8px; padding: 8px 16px;
-        color: #e2e8f0; border: 1px solid #334155;
-    }
-    .stTabs [aria-selected="true"] {
-        background-color: #3b82f6 !important; color: white !important;
-    }
-    /* ── Sidebar Styles ── */
-    .sb-header {
-        background: linear-gradient(135deg, #1e3a5f 0%, #1e293b 100%);
-        border-radius: 10px;
-        padding: 14px 16px;
-        border: 1px solid #2d4a6e;
-        margin-bottom: 4px;
-    }
-    .sb-header h2 {
-        font-size: 1rem; font-weight: 700; color: #e2e8f0;
-        margin: 0; letter-spacing: 0.5px;
-    }
-    .sb-header p {
-        font-size: 0.72rem; color: #64748b;
-        margin: 2px 0 0 0; letter-spacing: 0.3px;
-    }
-    .sb-section-label {
-        font-size: 0.68rem; font-weight: 700;
-        text-transform: uppercase; letter-spacing: 1.8px;
-        color: #475569; margin: 16px 0 8px 2px;
-    }
-    .sb-card {
-        background: #1e293b;
-        border-radius: 10px;
-        padding: 14px 16px;
-        border: 1px solid #2d3748;
-        margin-bottom: 8px;
-    }
-    .sb-stat-row {
-        display: flex; justify-content: space-between;
-        align-items: center; padding: 7px 0;
-        border-bottom: 1px solid #263344;
-        font-size: 0.82rem;
-    }
-    .sb-stat-row:last-of-type { border-bottom: none; }
-    .sb-stat-label { color: #94a3b8; }
-    .sb-stat-value { font-weight: 600; color: #f8fafc; }
-    .sb-badge {
-        margin-top: 10px;
-        padding: 7px 12px;
-        background: #0f2318;
-        border-radius: 7px;
-        border-left: 3px solid #22c55e;
-        font-size: 0.78rem;
-        color: #86efac;
-        font-weight: 500;
-    }
-    .sb-about {
-        padding: 10px 14px;
-        background: #0f172a;
-        border-radius: 8px;
-        border: 1px solid #1e293b;
-        font-size: 0.76rem;
-        color: #64748b;
-        line-height: 1.5;
-    }
-    /* ── File Uploader Overrides ── */
-    [data-testid="stFileUploader"] {
-        width: 100%;
-    }
-    [data-testid="stFileUploaderDropzone"] {
-        background: #0f172a !important;
-        border: 2px dashed #334155 !important;
-        border-radius: 10px !important;
-        padding: 20px 12px !important;
-        transition: border-color 0.2s ease, background 0.2s ease;
-        text-align: center;
-    }
-    [data-testid="stFileUploaderDropzone"]:hover {
-        border-color: #60a5fa !important;
-        background: #0d1f3c !important;
-    }
-    [data-testid="stFileUploaderDropzoneInstructions"] > div > span {
-        font-size: 0.78rem !important;
-        color: #94a3b8 !important;
-    }
-    [data-testid="stFileUploaderDropzoneInstructions"] > div > small {
-        font-size: 0.7rem !important;
-        color: #475569 !important;
-    }
-    [data-testid="stFileUploaderDropzoneInstructions"] svg {
-        fill: #3b82f6 !important;
-        width: 28px !important;
-        height: 28px !important;
-    }
-    [data-testid="stFileUploader"] section > button {
-        background: #1e3a5f !important;
-        border: 1px solid #2d4a6e !important;
-        color: #93c5fd !important;
-        border-radius: 8px !important;
-        font-size: 0.78rem !important;
-        padding: 4px 14px !important;
-    }
-    [data-testid="stFileUploader"] section > button:hover {
-        background: #1e40af !important;
-        border-color: #60a5fa !important;
-        color: #fff !important;
-    }
-    /* Uploaded file item */
-    [data-testid="stFileUploaderFile"] {
-        background: #1e293b !important;
-        border-radius: 8px !important;
-        border: 1px solid #334155 !important;
-        padding: 6px 10px !important;
-        margin-top: 6px !important;
-    }
-    [data-testid="stFileUploaderFileName"] {
-        color: #e2e8f0 !important;
-        font-size: 0.78rem !important;
-    }
-    [data-testid="stFileUploaderFileSize"] {
-        color: #64748b !important;
-        font-size: 0.72rem !important;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+html,body,[class*="css"],.stApp{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif!important}
+#MainMenu,footer{visibility:hidden}
+.block-container{padding-top:1.5rem!important;padding-bottom:2rem!important;max-width:1400px!important}
+.stApp{background:#080c14}
+section[data-testid="stSidebar"]{background:#070b12!important;border-right:1px solid #141f30!important}
+.app-header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #141f30}
+.app-title{font-size:1.55rem;font-weight:700;color:#f1f5f9;letter-spacing:-.4px;margin:0;line-height:1.2}
+.app-title span{color:#3b82f6}
+.app-subtitle{font-size:.78rem;color:#334155;font-weight:400;margin:5px 0 0 1px}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem}
+.metric-card{background:#0c1220;border:1px solid #141f30;border-radius:10px;padding:18px 20px;position:relative;overflow:hidden;transition:border-color 150ms ease,transform 150ms ease;cursor:default}
+.metric-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#1d4ed8,#3b82f6);opacity:0;transition:opacity 150ms ease}
+.metric-card:hover{border-color:#1e3a5f;transform:translateY(-1px)}
+.metric-card:hover::after{opacity:1}
+.metric-value{font-size:2rem;font-weight:700;color:#f1f5f9;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-1px}
+.metric-label{font-size:.68rem;color:#334155;text-transform:uppercase;letter-spacing:1.4px;font-weight:600;margin-top:7px}
+.stTabs [data-baseweb="tab-list"]{gap:0!important;border-bottom:1px solid #141f30!important;background:transparent!important;padding:0!important}
+.stTabs [data-baseweb="tab"]{background:transparent!important;border:none!important;border-bottom:2px solid transparent!important;border-radius:0!important;padding:10px 22px!important;color:#334155!important;font-size:.82rem!important;font-weight:500!important;transition:color 150ms ease,border-color 150ms ease!important;margin-bottom:-1px!important}
+.stTabs [data-baseweb="tab"]:hover{color:#64748b!important;background:transparent!important}
+.stTabs [aria-selected="true"]{color:#f1f5f9!important;border-bottom-color:#3b82f6!important;background:transparent!important}
+.stTabs [data-baseweb="tab-panel"]{padding-top:1.5rem!important}
+hr{border-color:#141f30!important;margin:1.5rem 0!important}
+.stTextInput>div>div>input{background:#0c1220!important;border:1px solid #1e2d45!important;border-radius:8px!important;color:#e2e8f0!important;font-size:.88rem!important;transition:border-color 150ms ease!important;padding:10px 14px!important}
+.stTextInput>div>div>input:focus{border-color:#3b82f6!important;box-shadow:0 0 0 3px rgba(59,130,246,.12)!important}
+.stTextInput>div>div>input::placeholder{color:#1e3a5f!important}
+[data-baseweb="select"]>div{background:#0c1220!important;border:1px solid #1e2d45!important;border-radius:8px!important;color:#e2e8f0!important;font-size:.85rem!important;transition:border-color 150ms ease!important}
+.stRadio label{color:#94a3b8!important;font-size:.83rem!important}
+.stButton>button{font-weight:600!important;font-size:.83rem!important;border-radius:8px!important;transition:background 150ms ease,box-shadow 150ms ease,transform 100ms ease!important;cursor:pointer!important}
+.stButton>button:active{transform:scale(.98)!important}
+.stButton>button[kind="primary"]{background:#2563eb!important;border:none!important;color:#fff!important}
+.stButton>button[kind="primary"]:hover{background:#1d4ed8!important;box-shadow:0 0 0 3px rgba(37,99,235,.22)!important}
+.stSuccess{background:#052e16!important;border-color:#10b981!important;color:#6ee7b7!important;border-radius:8px!important}
+.stError,.stWarning{border-radius:8px!important}
+.stInfo{background:#0c1a30!important;border-color:#1e3a5f!important;border-radius:8px!important;color:#94a3b8!important}
+.answer-card{background:#0c1220;border:1px solid #1e2d45;border-left:3px solid #3b82f6;border-radius:10px;padding:20px 24px;margin-top:12px;line-height:1.75;color:#e2e8f0;font-size:.88rem}
+.answer-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#3b82f6;margin-bottom:12px}
+.citations-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#334155;margin:20px 0 10px}
+.citation-row{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #111827;font-size:.8rem}
+.citation-row:last-of-type{border-bottom:none}
+.citation-entity{font-weight:600;color:#93c5fd;min-width:130px;flex-shrink:0}
+.citation-detail{color:#475569;line-height:1.5}
+.modes-row{display:flex;gap:12px;margin-top:1rem}
+.mode-card{flex:1;background:#0c1220;border:1px solid #141f30;border-radius:8px;padding:14px 16px}
+.mode-title{font-size:.78rem;font-weight:600;color:#64748b;margin-bottom:5px}
+.mode-body{font-size:.76rem;color:#334155;line-height:1.6}
+.sb-header{background:#0c1220;border-radius:8px;padding:13px 15px;border:1px solid #141f30;margin-bottom:2px}
+.sb-header h2{font-size:.9rem;font-weight:700;color:#f1f5f9;margin:0;letter-spacing:-.2px}
+.sb-header p{font-size:.68rem;color:#334155;margin:3px 0 0 0}
+.sb-section-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:2.2px;color:#1e3a5f;margin:18px 0 8px 1px}
+.sb-card{background:#0c1220;border-radius:8px;padding:13px 15px;border:1px solid #141f30;margin-bottom:6px}
+.sb-stat-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #0a101c;font-size:.78rem}
+.sb-stat-row:last-of-type{border-bottom:none}
+.sb-stat-label{color:#475569}
+.sb-stat-value{font-weight:600;color:#f1f5f9;font-variant-numeric:tabular-nums}
+.sb-badge{margin-top:10px;padding:6px 11px;background:#031a0e;border-radius:6px;border-left:2px solid #10b981;font-size:.74rem;color:#6ee7b7;font-weight:500}
+.sb-about{padding:10px 14px;background:#05080f;border-radius:8px;border:1px solid #0c1220;font-size:.72rem;color:#334155;line-height:1.7}
+[data-testid="stFileUploader"]{width:100%}
+[data-testid="stFileUploaderDropzone"]{background:#05080f!important;border:1.5px dashed #141f30!important;border-radius:8px!important;padding:18px 12px!important;transition:border-color 150ms ease,background 150ms ease!important}
+[data-testid="stFileUploaderDropzone"]:hover{border-color:#2563eb!important;background:#080d1a!important}
+[data-testid="stFileUploaderDropzoneInstructions"]>div>span{font-size:.73rem!important;color:#334155!important}
+[data-testid="stFileUploaderDropzoneInstructions"]>div>small{font-size:.67rem!important;color:#1e2d45!important}
+[data-testid="stFileUploaderDropzoneInstructions"] svg{fill:#2563eb!important;width:22px!important;height:22px!important}
+[data-testid="stFileUploader"] section>button{background:#0c1220!important;border:1px solid #1e2d45!important;color:#64748b!important;border-radius:6px!important;font-size:.73rem!important;padding:3px 12px!important;transition:all 150ms ease!important}
+[data-testid="stFileUploader"] section>button:hover{background:#1e3a5f!important;border-color:#2563eb!important;color:#93c5fd!important}
+[data-testid="stFileUploaderFile"]{background:#0c1220!important;border-radius:6px!important;border:1px solid #141f30!important;padding:5px 10px!important;margin-top:5px!important}
+[data-testid="stFileUploaderFileName"]{color:#94a3b8!important;font-size:.74rem!important}
+[data-testid="stFileUploaderFileSize"]{color:#334155!important;font-size:.68rem!important}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:#080c14}
+::-webkit-scrollbar-thumb{background:#141f30;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#1e3a5f}
+.stDataFrame{border:1px solid #141f30!important;border-radius:8px!important;overflow:hidden!important}
 </style>
 """, unsafe_allow_html=True)
 
@@ -228,21 +167,23 @@ except FileNotFoundError:
     st.stop()
 
 # ─── Header ───
-st.markdown('<p class="main-header">GraphRAG Engine</p>', unsafe_allow_html=True)
-st.caption("From-scratch Graph-based Retrieval Augmented Generation")
+st.markdown("""
+<div class="app-header">
+    <div class="app-title">GraphRAG <span>Engine</span></div>
+    <div class="app-subtitle">Graph-based Retrieval Augmented Generation — built from scratch</div>
+</div>
+""", unsafe_allow_html=True)
 
 # ─── Metrics Row ───
-col1, col2, col3, col4 = st.columns(4)
-with col1:
-    st.markdown(f'<div class="metric-card"><div class="metric-value">{stats["num_entities"]}</div><div class="metric-label">Entities</div></div>', unsafe_allow_html=True)
-with col2:
-    st.markdown(f'<div class="metric-card"><div class="metric-value">{stats["num_relationships"]}</div><div class="metric-label">Relationships</div></div>', unsafe_allow_html=True)
-with col3:
-    st.markdown(f'<div class="metric-card"><div class="metric-value">{stats["num_communities"]}</div><div class="metric-label">Communities</div></div>', unsafe_allow_html=True)
-with col4:
-    st.markdown(f'<div class="metric-card"><div class="metric-value">{stats["num_documents"]}</div><div class="metric-label">Documents</div></div>', unsafe_allow_html=True)
+st.markdown(f"""
+<div class="metrics-grid">
+    <div class="metric-card"><div class="metric-value">{stats["num_entities"]}</div><div class="metric-label">Entities</div></div>
+    <div class="metric-card"><div class="metric-value">{stats["num_relationships"]}</div><div class="metric-label">Relationships</div></div>
+    <div class="metric-card"><div class="metric-value">{stats["num_communities"]}</div><div class="metric-label">Communities</div></div>
+    <div class="metric-card"><div class="metric-value">{stats["num_documents"]}</div><div class="metric-label">Documents</div></div>
+</div>
+""", unsafe_allow_html=True)
 
-st.divider()
 
 # ─── Tabs ───
 tab1, tab2, tab3, tab4 = st.tabs(["Knowledge Graph", "Search", "Communities", "Statistics"])
@@ -257,11 +198,11 @@ with tab1:
 
     with col_legend:
         legend_items = " ".join([
-            f'<span style="color:{color};font-size:13px;">● {t.capitalize()}</span>'
+            f'<span style="color:{color};font-size:12px;font-weight:500;">&#9679; {t.capitalize()}</span>'
             for t, color in TYPE_COLORS.items()
             if stats["entity_types"].get(t, 0) > 0
         ])
-        st.markdown(f"**Legend:** {legend_items}", unsafe_allow_html=True)
+        st.markdown(f'<div style="padding-top:8px;display:flex;flex-wrap:wrap;gap:10px;">{legend_items}</div>', unsafe_allow_html=True)
 
     html_path = render_pyvis_graph(G, filter_community=filter_comm)
     with open(html_path, "r", encoding="utf-8") as f:
@@ -270,12 +211,12 @@ with tab1:
 
 # ─── Tab 2: Search ───
 with tab2:
-    st.markdown("### Query the Knowledge Graph")
+    st.markdown('<div style="font-size:1rem;font-weight:600;color:#e2e8f0;margin-bottom:16px;">Query the Knowledge Graph</div>', unsafe_allow_html=True)
     col_search, col_type = st.columns([3, 1])
     with col_search:
-        query = st.text_input("Enter your question", placeholder="e.g. Who created the Transformer architecture?")
+        query = st.text_input("question", placeholder="e.g. Who created the Transformer architecture?", label_visibility="collapsed")
     with col_type:
-        search_type = st.radio("Search Mode", ["Local", "Global"], horizontal=True)
+        search_type = st.radio("Mode", ["Local", "Global"], horizontal=True, label_visibility="collapsed")
 
     if query:
         api_key = os.getenv("GEMINI_API_KEY", "")
@@ -309,41 +250,38 @@ with tab2:
                 if citations:
                     st.markdown("#### Cited Entities")
                     for c in citations:
-                        st.markdown(f"- **{c.get('entity', 'Unknown')}**: {c.get('details', '')}")
+                    citation_html = '<div class="citations-label">Cited Entities</div>' + "".join([f'<div class="citation-row"><div class="citation-entity">{c.get("entity")}</div><div class="citation-detail">{c.get("details")}</div></div>' for c in citations])
+                st.markdown(f'<div class="answer-card"><div class="answer-label">Answer</div><div>{answer_text}</div>{citation_html}</div>', unsafe_allow_html=True)
             except Exception:
-                # Fallback for plain text
-                st.markdown(result)
+                st.markdown(f'<div class="answer-card"><div class="answer-label">Answer</div>{result}</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div style="margin-top:2rem;margin-bottom:0.5rem;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#1e3a5f;">Search Modes</div>
+    <div class="modes-row">
+        <div class="mode-card"><div class="mode-title">Local Search</div><div class="mode-body">Traverses entity neighborhoods in the graph. Best for specific questions about people, tools, or algorithms.</div></div>
+        <div class="mode-card"><div class="mode-title">Global Search</div><div class="mode-body">Synthesizes across community summaries. Best for thematic questions about trends and patterns.</div></div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.divider()
-    st.markdown("**How search works:**")
-    col_l, col_g = st.columns(2)
-    with col_l:
-        st.info("**Local Search** traverses entity neighborhoods in the graph. Best for specific questions about people, tools, or algorithms.")
-    with col_g:
-        st.info("**Global Search** synthesizes across community summaries. Best for thematic questions about trends and patterns.")
-
-# ─── Tab 3: Communities ───
 with tab3:
-    st.markdown("### Discovered Communities")
+    st.markdown('<div style="font-size:1rem;font-weight:600;color:#e2e8f0;margin-bottom:16px;">Discovered Communities</div>', unsafe_allow_html=True)
     for cid in sorted(summaries.keys()):
         members = stats["communities"].get(str(cid), [])
-        with st.expander(f"Community {cid} — {len(members)} members", expanded=(cid < 3)):
-            st.markdown(f"**Summary:** {summaries[cid]}")
-            st.markdown("**Members:**")
+        with st.expander(f"Community {cid}  ·  {len(members)} members", expanded=(cid < 3)):
+            st.markdown(f'<div style="font-size:.82rem;color:#64748b;line-height:1.7;margin-bottom:12px;">{summaries[cid]}</div>', unsafe_allow_html=True)
             member_tags = ""
             for m in members:
                 ntype = G.nodes[m].get("type", "unknown") if m in G.nodes else "unknown"
                 color = TYPE_COLORS.get(ntype, "#6b7280")
-                member_tags += f'<span style="background:{color}22;color:{color};padding:2px 8px;border-radius:12px;margin:2px;display:inline-block;font-size:13px;">{m}</span> '
-            st.markdown(member_tags, unsafe_allow_html=True)
+                member_tags += f'<span style="background:{color}18;color:{color};padding:3px 10px;border-radius:20px;margin:3px 3px 0 0;display:inline-block;font-size:.74rem;font-weight:500;border:1px solid {color}30;">{m}</span>'
+            st.markdown(f'<div style="margin-top:4px;">{member_tags}</div>', unsafe_allow_html=True)
 
 # ─── Tab 4: Statistics ───
 with tab4:
+    import pandas as pd
     col_a, col_b = st.columns(2)
 
     with col_a:
-        st.markdown("### Entity Type Distribution")
-        import pandas as pd
+        st.markdown('<div style="font-size:.82rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Entity Type Distribution</div>', unsafe_allow_html=True)
         type_df = pd.DataFrame(
             [(t, c) for t, c in sorted(stats["entity_types"].items(), key=lambda x: -x[1])],
             columns=["Type", "Count"]
@@ -351,13 +289,13 @@ with tab4:
         st.bar_chart(type_df.set_index("Type"))
 
     with col_b:
-        st.markdown("### Most Connected Entities")
+        st.markdown('<div style="font-size:.82rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Most Connected Entities</div>', unsafe_allow_html=True)
         degrees = sorted(G.degree(), key=lambda x: -x[1])[:15]
         deg_df = pd.DataFrame(degrees, columns=["Entity", "Connections"])
         st.dataframe(deg_df, use_container_width=True, hide_index=True)
 
-    st.divider()
-    st.markdown("### Community Sizes")
+    st.markdown('<div style="height:1px;background:#141f30;margin:1.5rem 0;"></div>', unsafe_allow_html=True)
+    st.markdown('<div style="font-size:.82rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Community Sizes</div>', unsafe_allow_html=True)
     comm_sizes = pd.DataFrame(
         [(f"Community {k}", len(v)) for k, v in sorted(stats["communities"].items(), key=lambda x: int(x[0]))],
         columns=["Community", "Members"]

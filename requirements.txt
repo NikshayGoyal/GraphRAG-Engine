@@ -5,3 +5,4 @@ streamlit>=1.30.0
 pyvis>=0.3.2
 pandas>=2.0.0
 pypdf>=3.0.0
+python-docx>=0.8.11
