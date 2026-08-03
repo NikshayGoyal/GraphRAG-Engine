@@ -19,7 +19,6 @@ load_dotenv()
 # ─── Page Config ───
 st.set_page_config(
     page_title="GraphRAG Engine",
-    page_icon="🕸️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -246,7 +245,7 @@ with col4:
 st.divider()
 
 # ─── Tabs ───
-tab1, tab2, tab3, tab4 = st.tabs(["🕸️ Knowledge Graph", "🔍 Search", "🏘️ Communities", "📊 Statistics"])
+tab1, tab2, tab3, tab4 = st.tabs(["Knowledge Graph", "Search", "Communities", "Statistics"])
 
 # ─── Tab 1: Knowledge Graph ───
 with tab1:
@@ -296,7 +295,24 @@ with tab2:
                     result = global_search(query, summaries, api_key)
 
             st.markdown("### Answer")
-            st.markdown(result)
+            try:
+                # Handle stringified JSON
+                if isinstance(result, str):
+                    import json
+                    res_json = json.loads(result)
+                else:
+                    res_json = result
+                    
+                st.markdown(res_json.get("answer", str(result)))
+                
+                citations = res_json.get("cited_entities", [])
+                if citations:
+                    st.markdown("#### Cited Entities")
+                    for c in citations:
+                        st.markdown(f"- **{c.get('entity', 'Unknown')}**: {c.get('details', '')}")
+            except Exception:
+                # Fallback for plain text
+                st.markdown(result)
 
     st.divider()
     st.markdown("**How search works:**")
@@ -354,13 +370,13 @@ with st.sidebar:
     # Header card
     st.markdown("""
     <div class="sb-header">
-        <h2>⚙️ GraphRAG Control Panel</h2>
+        <h2>GraphRAG Control Panel</h2>
         <p>Build and explore knowledge graphs from your documents</p>
     </div>
     """, unsafe_allow_html=True)
 
     # ── Upload Section ──
-    st.markdown('<div class="sb-section-label">📂 Build New Graph</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sb-section-label">Build New Graph</div>', unsafe_allow_html=True)
     uploaded_files = st.file_uploader(
         "Drop files here",
         type=["txt", "pdf", "docx", "md"],
@@ -372,10 +388,10 @@ with st.sidebar:
     if uploaded_files:
         for uf in uploaded_files:
             ext = uf.name.lower().rsplit(".", 1)[-1]
-            icon = {"pdf": "📑", "docx": "📝", "md": "📌"}.get(ext, "📄")
+            icon = {"pdf": "[PDF]", "docx": "[DOCX]", "md": "[MD]"}.get(ext, "[TXT]")
             st.caption(f"{icon} {uf.name}  —  {round(uf.size/1024, 1)} KB")
 
-        if st.button("🚀 Process & Build Graph", type="primary", use_container_width=True):
+        if st.button("Process & Build Graph", type="primary", use_container_width=True):
             import shutil
             import io
 
@@ -410,7 +426,7 @@ with st.sidebar:
 
                 progress.progress((i + 1) / len(uploaded_files), text=f"Saved {uf.name}")
 
-            with st.spinner("🔄 Running pipeline — ~30–60 seconds..."):
+            with st.spinner("Running pipeline — ~30–60 seconds..."):
                 try:
                     import os
                     api_key = os.getenv("GEMINI_API_KEY", "")
@@ -420,24 +436,24 @@ with st.sidebar:
                         from pipeline import run_pipeline
                         run_pipeline(input_dir="data/documents", output_dir="output", api_key=api_key)
                         load_graph_data.clear()
-                        st.success("✅ Done! Explore the tabs above.")
+                        st.success("Done! Explore the tabs above.")
                         st.rerun()
                 except Exception as e:
                     st.error(f"Pipeline error: {e}")
 
     # ── Optimization Card ──
-    st.markdown('<div class="sb-section-label">⚡ Cost Optimization</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sb-section-label">Cost Optimization</div>', unsafe_allow_html=True)
     st.markdown("""
     <div class="sb-card">
         <div class="sb-stat-row">
-            <span class="sb-stat-label">🔴 Standard approach</span>
+            <span class="sb-stat-label">Standard approach</span>
             <span class="sb-stat-value">15 LLM calls</span>
         </div>
         <div class="sb-stat-row">
-            <span class="sb-stat-label">🟢 Our approach</span>
+            <span class="sb-stat-label">Our approach</span>
             <span class="sb-stat-value">1 batched call</span>
         </div>
-        <div class="sb-badge">↓ ~93% cost reduction via batched prompt</div>
+        <div class="sb-badge">~93% cost reduction via batched prompt</div>
     </div>
     """, unsafe_allow_html=True)
 
