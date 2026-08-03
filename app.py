@@ -36,7 +36,7 @@ section[data-testid="stSidebar"]{background:#070b12!important;border-right:1px s
 .app-title{font-size:1.55rem;font-weight:700;color:#f1f5f9;letter-spacing:-.4px;margin:0;line-height:1.2}
 .app-title span{color:#3b82f6}
 .app-subtitle{font-size:.78rem;color:#334155;font-weight:400;margin:5px 0 0 1px}
-.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:1.5rem}
 .metric-card{background:#0c1220;border:1px solid #141f30;border-radius:10px;padding:18px 20px;position:relative;overflow:hidden;transition:border-color 150ms ease,transform 150ms ease;cursor:default}
 .metric-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#1d4ed8,#3b82f6);opacity:0;transition:opacity 150ms ease}
 .metric-card:hover{border-color:#1e3a5f;transform:translateY(-1px)}
@@ -373,20 +373,34 @@ with st.sidebar:
 
                 progress.progress((i + 1) / len(uploaded_files), text=f"Saved {uf.name}")
 
-            with st.spinner("Running pipeline — ~30–60 seconds..."):
+            with st.status("Running GraphRAG Pipeline...", expanded=True) as status_box:
                 try:
                     import os
                     api_key = os.getenv("GEMINI_API_KEY", "")
                     if not api_key:
-                        st.error("Missing GEMINI_API_KEY in environment.")
+                        status_box.update(label="Missing GEMINI_API_KEY in environment.", state="error")
                     else:
                         from pipeline import run_pipeline
-                        run_pipeline(input_dir="data/documents", output_dir="output", api_key=api_key)
+                        import sys
+                        import contextlib
+                        
+                        class StreamlitStatusWriter:
+                            def __init__(self, container):
+                                self.container = container
+                                self.buffer = ""
+                            def write(self, text):
+                                if text.strip() and not text.startswith("=") and not text.isspace():
+                                    self.container.write(text.strip())
+                            def flush(self): pass
+                            
+                        with contextlib.redirect_stdout(StreamlitStatusWriter(status_box)):
+                            run_pipeline(input_dir="data/documents", output_dir="output", api_key=api_key)
+                            
                         load_graph_data.clear()
-                        st.success("Done! Explore the tabs above.")
+                        status_box.update(label="Graph built successfully! Reloading...", state="complete", expanded=False)
                         st.rerun()
                 except Exception as e:
-                    st.error(f"Pipeline error: {e}")
+                    status_box.update(label=f"Pipeline error: {e}", state="error")
 
     # ── Optimization Card ──
     st.markdown('<div class="sb-section-label">Cost Optimization</div>', unsafe_allow_html=True)

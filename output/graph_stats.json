@@ -1,6 +1,6 @@
 {
-  "num_documents": 0,
-  "num_chunks": 0,
+  "num_documents": 1,
+  "num_chunks": 2,
   "num_entities": 0,
   "num_relationships": 0,
   "num_communities": 0,
