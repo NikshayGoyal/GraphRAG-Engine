@@ -71,8 +71,15 @@ TEXT:
 {chr(10).join(relevant_chunks[:2])}
 
 QUESTION: {query}
+Provide a detailed answer citing specific entities and relationships.
 
-Provide a detailed answer citing specific entities and relationships."""
+You MUST return your response as a valid JSON object with exactly this structure:
+{{
+  "answer": "your detailed answer to the question",
+  "cited_entities": [
+    {{"entity": "ENTITY_NAME", "details": "how it relates to the answer"}}
+  ]
+}}"""
 
     response_text = call_mistral(prompt, api_key, retries=3)
     if response_text:
@@ -107,8 +114,15 @@ COMMUNITY SUMMARIES:
 {summaries_text}
 
 QUESTION: {query}
+Synthesize across all relevant communities. Highlight themes and connections.
 
-Synthesize across all relevant communities. Highlight themes and connections."""
+You MUST return your response as a valid JSON object with exactly this structure:
+{{
+  "answer": "your synthesized answer to the question",
+  "cited_entities": [
+    {{"entity": "COMMUNITY_ID", "details": "brief reason for citation"}}
+  ]
+}}"""
 
     response_text = call_mistral(prompt, api_key, retries=3)
     if response_text:

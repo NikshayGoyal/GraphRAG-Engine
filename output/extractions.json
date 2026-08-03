@@ -1,10 +1,844 @@
 [
   {
-    "entities": [],
-    "relationships": []
+    "entities": [
+      {
+        "name": "NIKSHA Y GOYAL",
+        "type": "person",
+        "description": "Individual with expertise in mining engineering, machine learning, and data science"
+      },
+      {
+        "name": "INDIAN INSTITUTE OF TECHNOLOGY (BHU), VARANASI",
+        "type": "organization",
+        "description": "Educational institution offering integrated dual degree in mining engineering"
+      },
+      {
+        "name": "RAMESHWARAM PUBLIC SCHOOL",
+        "type": "organization",
+        "description": "School where NIKSHA Y GOYAL completed Class XII"
+      },
+      {
+        "name": "SAKET PUBLIC SCHOOL",
+        "type": "organization",
+        "description": "School where NIKSHA Y GOYAL completed Class X"
+      },
+      {
+        "name": "C++",
+        "type": "technology",
+        "description": "Programming language"
+      },
+      {
+        "name": "PYTHON",
+        "type": "technology",
+        "description": "Programming language"
+      },
+      {
+        "name": "MYSQL",
+        "type": "technology",
+        "description": "Database management system"
+      },
+      {
+        "name": "SCIKIT-LEARN",
+        "type": "technology",
+        "description": "Machine learning library for Python"
+      },
+      {
+        "name": "NUMPY",
+        "type": "technology",
+        "description": "Numerical computing library for Python"
+      },
+      {
+        "name": "PANDAS",
+        "type": "technology",
+        "description": "Data manipulation and analysis library for Python"
+      },
+      {
+        "name": "TENSORFLOW",
+        "type": "technology",
+        "description": "Open-source machine learning framework"
+      },
+      {
+        "name": "KERAS",
+        "type": "technology",
+        "description": "High-level neural networks API"
+      },
+      {
+        "name": "LANGCHAIN",
+        "type": "technology",
+        "description": "Framework for developing applications powered by language models"
+      },
+      {
+        "name": "DATA STRUCTURE & ALGORITHMS",
+        "type": "concept",
+        "description": "Field of study focused on efficient data processing and problem-solving"
+      },
+      {
+        "name": "MACHINE LEARNING",
+        "type": "concept",
+        "description": "Subset of artificial intelligence focused on building systems that learn from data"
+      },
+      {
+        "name": "DEEP LEARNING",
+        "type": "concept",
+        "description": "Subset of machine learning using neural networks with many layers"
+      },
+      {
+        "name": "STATISTICS",
+        "type": "concept",
+        "description": "Field of study dealing with data collection, analysis, and interpretation"
+      },
+      {
+        "name": "GENERATIVE AI",
+        "type": "concept",
+        "description": "Type of artificial intelligence that can generate new content"
+      },
+      {
+        "name": "NLP",
+        "type": "concept",
+        "description": "Natural Language Processing"
+      },
+      {
+        "name": "LLMS",
+        "type": "concept",
+        "description": "Large Language Models"
+      },
+      {
+        "name": "LEADERSHIP",
+        "type": "concept",
+        "description": "Ability to guide and motivate a team"
+      },
+      {
+        "name": "PROBLEM SOLVING",
+        "type": "concept",
+        "description": "Process of finding solutions to difficult or complex issues"
+      },
+      {
+        "name": "STRATEGIC THINKING",
+        "type": "concept",
+        "description": "Ability to plan and execute long-term goals"
+      },
+      {
+        "name": "COMMUNICATION",
+        "type": "concept",
+        "description": "Process of exchanging information effectively"
+      },
+      {
+        "name": "TEAM WORK",
+        "type": "concept",
+        "description": "Collaborative effort of a group to achieve a common goal"
+      },
+      {
+        "name": "TIME MANAGEMENT",
+        "type": "concept",
+        "description": "Process of planning and exercising conscious control over time"
+      },
+      {
+        "name": "BRAND SENTIMENT ANALYSIS",
+        "type": "project",
+        "description": "NLP pipeline for analyzing brand-level sentiment on multilingual data"
+      },
+      {
+        "name": "GITHUB",
+        "type": "tool",
+        "description": "Platform for version control and collaboration using Git"
+      },
+      {
+        "name": "TF-IDF",
+        "type": "algorithm",
+        "description": "Term Frequency-Inverse Document Frequency, used for text vectorization"
+      },
+      {
+        "name": "XGBOOST",
+        "type": "algorithm",
+        "description": "Optimized distributed gradient boosting library"
+      },
+      {
+        "name": "BERT",
+        "type": "technology",
+        "description": "Bidirectional Encoder Representations from Transformers, NLP model"
+      },
+      {
+        "name": "T5",
+        "type": "technology",
+        "description": "Text-to-Text Transfer Transformer, NLP model"
+      },
+      {
+        "name": "PYTORCH",
+        "type": "technology",
+        "description": "Open-source machine learning library"
+      },
+      {
+        "name": "HUGGINGFACE TRANSFORMERS",
+        "type": "technology",
+        "description": "Library providing state-of-the-art pre-trained models"
+      },
+      {
+        "name": "ASPECT-BASED SENTIMENT ANALYSIS",
+        "type": "concept",
+        "description": "Sentiment analysis focusing on specific aspects of a product or entity"
+      },
+      {
+        "name": "GRAPHRAG ENGINE",
+        "type": "project",
+        "description": "Graph-based Retrieval-Augmented Generation engine built from scratch"
+      },
+      {
+        "name": "GRAPHRAG",
+        "type": "concept",
+        "description": "Graph-based Retrieval-Augmented Generation architecture"
+      },
+      {
+        "name": "MICROSOFT RESEARCH",
+        "type": "organization",
+        "description": "Research division of Microsoft"
+      },
+      {
+        "name": "NETWORKX",
+        "type": "technology",
+        "description": "Python library for creation, manipulation, and study of complex networks"
+      },
+      {
+        "name": "GEMINI API",
+        "type": "technology",
+        "description": "API for accessing Google's Gemini models"
+      },
+      {
+        "name": "STREAMLIT",
+        "type": "technology",
+        "description": "Open-source app framework for Machine Learning and Data Science"
+      },
+      {
+        "name": "PYVIS",
+        "type": "technology",
+        "description": "Python library for network visualization"
+      },
+      {
+        "name": "HYBRID NUMERICAL NEURAL NETWORK",
+        "type": "project",
+        "description": "Neural network integrating numerical methods for weight updates"
+      },
+      {
+        "name": "GAUSS-SEIDEL",
+        "type": "algorithm",
+        "description": "Iterative method for solving linear systems"
+      },
+      {
+        "name": "NEWTON-RAPHSON",
+        "type": "algorithm",
+        "description": "Root-finding algorithm for solving nonlinear equations"
+      },
+      {
+        "name": "JACOBI",
+        "type": "algorithm",
+        "description": "Iterative algorithm for solving linear systems"
+      },
+      {
+        "name": "TRAINING AND PLACEMENT CELL, IIT (BHU), VARANASI",
+        "type": "organization",
+        "description": "Department responsible for internships and placements at IIT (BHU)"
+      },
+      {
+        "name": "E-CELL, IIT (BHU), VARANASI",
+        "type": "organization",
+        "description": "Entrepreneurship cell at IIT (BHU)"
+      },
+      {
+        "name": "ICICI BANK",
+        "type": "organization",
+        "description": "Indian multinational bank and financial services company"
+      },
+      {
+        "name": "NATIONAL E-GOVERNANCE DIVISION",
+        "type": "organization",
+        "description": "Government division promoting e-governance initiatives"
+      },
+      {
+        "name": "E-SUMMIT'25",
+        "type": "event",
+        "description": "Entrepreneurship summit organized by E-Cell, IIT (BHU)"
+      },
+      {
+        "name": "ABHIBUS",
+        "type": "organization",
+        "description": "Indian online bus ticketing platform"
+      },
+      {
+        "name": "EASEMYTRIP",
+        "type": "organization",
+        "description": "Indian online travel company"
+      },
+      {
+        "name": "PURETECH DIGITAL",
+        "type": "organization",
+        "description": "Digital marketing company"
+      },
+      {
+        "name": "GOOGLE TECHSTAR",
+        "type": "event",
+        "description": "Program for early-stage startups by Google"
+      },
+      {
+        "name": "IIT KHARAGPUR",
+        "type": "organization",
+        "description": "Indian Institute of Technology located in Kharagpur"
+      },
+      {
+        "name": "SOQ 2024",
+        "type": "event",
+        "description": "Summer of Quantitative Finance program"
+      },
+      {
+        "name": "MATIKS",
+        "type": "organization",
+        "description": "Platform for mental mathematics competitions"
+      },
+      {
+        "name": "DIAMOND LEAGUE",
+        "type": "event",
+        "description": "Mental mathematics competition series"
+      },
+      {
+        "name": "IIM BANGALORE",
+        "type": "organization",
+        "description": "Indian Institute of Management located in Bangalore"
+      },
+      {
+        "name": "VISTA 2024",
+        "type": "event",
+        "description": "Virtual trading competition organized by IIM Bangalore"
+      },
+      {
+        "name": "NYKAA PRESENTS FMC WEEKEND 2025",
+        "type": "event",
+        "description": "Digital arts festival organized by IIT (BHU) Varanasi"
+      },
+      {
+        "name": "MISSION ABACUS",
+        "type": "organization",
+        "description": "Organization conducting abacus competitions"
+      },
+      {
+        "name": "RBSE",
+        "type": "organization",
+        "description": "Rajasthan Board of Secondary Education"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "INDIAN INSTITUTE OF TECHNOLOGY (BHU), VARANASI",
+        "description": "is pursuing an Integrated Dual Degree in Mining Engineering at",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "RAMESHWARAM PUBLIC SCHOOL",
+        "description": "completed Class XII at",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "SAKET PUBLIC SCHOOL",
+        "description": "completed Class X at",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "C++",
+        "description": "has skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "PYTHON",
+        "description": "has skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "MYSQL",
+        "description": "has skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "SCIKIT-LEARN",
+        "description": "has skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "NUMPY",
+        "description": "has skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "PANDAS",
+        "description": "has skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "TENSORFLOW",
+        "description": "has skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "KERAS",
+        "description": "has skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "LANGCHAIN",
+        "description": "has skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "DATA STRUCTURE & ALGORITHMS",
+        "description": "has interests in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "MACHINE LEARNING",
+        "description": "has interests in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "DEEP LEARNING",
+        "description": "has interests in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "STATISTICS",
+        "description": "has interests in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "GENERATIVE AI",
+        "description": "has interests in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "NLP",
+        "description": "has interests in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "LLMS",
+        "description": "has interests in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "LEADERSHIP",
+        "description": "possesses soft skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "PROBLEM SOLVING",
+        "description": "possesses soft skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "STRATEGIC THINKING",
+        "description": "possesses soft skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "COMMUNICATION",
+        "description": "possesses soft skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "TEAM WORK",
+        "description": "possesses soft skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "TIME MANAGEMENT",
+        "description": "possesses soft skills in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "BRAND SENTIMENT ANALYSIS",
+        "description": "implemented",
+        "weight": 1
+      },
+      {
+        "source": "BRAND SENTIMENT ANALYSIS",
+        "target": "TF-IDF",
+        "description": "used",
+        "weight": 1
+      },
+      {
+        "source": "BRAND SENTIMENT ANALYSIS",
+        "target": "XGBOOST",
+        "description": "used",
+        "weight": 1
+      },
+      {
+        "source": "BRAND SENTIMENT ANALYSIS",
+        "target": "BERT",
+        "description": "used",
+        "weight": 1
+      },
+      {
+        "source": "BRAND SENTIMENT ANALYSIS",
+        "target": "T5",
+        "description": "used",
+        "weight": 1
+      },
+      {
+        "source": "BRAND SENTIMENT ANALYSIS",
+        "target": "PYTORCH",
+        "description": "used",
+        "weight": 1
+      },
+      {
+        "source": "BRAND SENTIMENT ANALYSIS",
+        "target": "HUGGINGFACE TRANSFORMERS",
+        "description": "used",
+        "weight": 1
+      },
+      {
+        "source": "BRAND SENTIMENT ANALYSIS",
+        "target": "ASPECT-BASED SENTIMENT ANALYSIS",
+        "description": "involves",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "GRAPHRAG ENGINE",
+        "description": "built",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG ENGINE",
+        "target": "GRAPHRAG",
+        "description": "is inspired by",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG ENGINE",
+        "target": "MICROSOFT RESEARCH",
+        "description": "inspired by research from",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG ENGINE",
+        "target": "NETWORKX",
+        "description": "uses",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG ENGINE",
+        "target": "GEMINI API",
+        "description": "uses",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG ENGINE",
+        "target": "STREAMLIT",
+        "description": "deployed on",
+        "weight": 1
+      },
+      {
+        "source": "GRAPHRAG ENGINE",
+        "target": "PYVIS",
+        "description": "uses for visualization",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "HYBRID NUMERICAL NEURAL NETWORK",
+        "description": "implemented",
+        "weight": 1
+      },
+      {
+        "source": "HYBRID NUMERICAL NEURAL NETWORK",
+        "target": "GAUSS-SEIDEL",
+        "description": "uses",
+        "weight": 1
+      },
+      {
+        "source": "HYBRID NUMERICAL NEURAL NETWORK",
+        "target": "NEWTON-RAPHSON",
+        "description": "uses",
+        "weight": 1
+      },
+      {
+        "source": "HYBRID NUMERICAL NEURAL NETWORK",
+        "target": "JACOBI",
+        "description": "uses",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "TRAINING AND PLACEMENT CELL, IIT (BHU), VARANASI",
+        "description": "is leading the team at",
+        "weight": 1
+      },
+      {
+        "source": "TRAINING AND PLACEMENT CELL, IIT (BHU), VARANASI",
+        "target": "INDIAN INSTITUTE OF TECHNOLOGY (BHU), VARANASI",
+        "description": "is a department of",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "E-CELL, IIT (BHU), VARANASI",
+        "description": "worked as Relations Associate at",
+        "weight": 1
+      },
+      {
+        "source": "E-CELL, IIT (BHU), VARANASI",
+        "target": "INDIAN INSTITUTE OF TECHNOLOGY (BHU), VARANASI",
+        "description": "is a cell of",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "ICICI BANK",
+        "description": "secured sponsorships from",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "NATIONAL E-GOVERNANCE DIVISION",
+        "description": "secured sponsorships from",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "E-SUMMIT'25",
+        "description": "secured sponsorships for",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "ABHIBUS",
+        "description": "secured partnerships with",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "EASEMYTRIP",
+        "description": "secured partnerships with",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "PURETECH DIGITAL",
+        "description": "recruited VP as panelist for",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "GOOGLE TECHSTAR",
+        "description": "recruited panelist for",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "IIT KHARAGPUR",
+        "description": "certified by",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "SOQ 2024",
+        "description": "completed modules in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "MATIKS",
+        "description": "is among top 1% players in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "DIAMOND LEAGUE",
+        "description": "participated in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "IIM BANGALORE",
+        "description": "won virtual trading competition at",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "VISTA 2024",
+        "description": "participated in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "NYKAA PRESENTS FMC WEEKEND 2025",
+        "description": "achieved runner-up in",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "MISSION ABACUS",
+        "description": "achieved top 10 finish in competition by",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHA Y GOYAL",
+        "target": "RBSE",
+        "description": "completed education under",
+        "weight": 1
+      }
+    ]
   },
   {
-    "entities": [],
-    "relationships": []
+    "entities": [
+      {
+        "name": "IIM BANGALORE",
+        "type": "organization",
+        "description": "Indian Institute of Management located in Bangalore"
+      },
+      {
+        "name": "FAST FORWARD",
+        "type": "event",
+        "description": "Virtual trading competition organized by IIM Bangalore"
+      },
+      {
+        "name": "VISTA 2024",
+        "type": "event",
+        "description": "Event where Fast Forward competition was held"
+      },
+      {
+        "name": "NYkaa",
+        "type": "organization",
+        "description": "Indian e-commerce company specializing in beauty and wellness products"
+      },
+      {
+        "name": "FMC WEEKEND 2025",
+        "type": "event",
+        "description": "India\u2019s premier digital arts fest organized by IIT (BHU) Varanasi"
+      },
+      {
+        "name": "IIT (BHU) VARANASI",
+        "type": "organization",
+        "description": "Indian Institute of Technology located in Varanasi"
+      },
+      {
+        "name": "MISSION ABACUS",
+        "type": "organization",
+        "description": "Organization conducting the National Level Abacus Competition"
+      },
+      {
+        "name": "NATIONAL LEVEL ABACUS COMPETITION",
+        "type": "event",
+        "description": "Competition organized by Mission Abacus"
+      },
+      {
+        "name": "NIKSHAY GOYAL",
+        "type": "person",
+        "description": "Individual with achievements in competitions and online presence"
+      },
+      {
+        "name": "GITHUB",
+        "type": "tool",
+        "description": "Platform for version control and code hosting"
+      },
+      {
+        "name": "LINKEDIN",
+        "type": "tool",
+        "description": "Professional networking platform"
+      },
+      {
+        "name": "ABACUS",
+        "type": "concept",
+        "description": "Mathematical tool used for calculations"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "IIM BANGALORE",
+        "target": "FAST FORWARD",
+        "description": "organized",
+        "weight": 1
+      },
+      {
+        "source": "FAST FORWARD",
+        "target": "VISTA 2024",
+        "description": "held_at",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHAY GOYAL",
+        "target": "FAST FORWARD",
+        "description": "participated_and_outperformed",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHAY GOYAL",
+        "target": "RANT IT",
+        "description": "participated_and_was_runner_up",
+        "weight": 1
+      },
+      {
+        "source": "RANT IT",
+        "target": "FMC WEEKEND 2025",
+        "description": "part_of",
+        "weight": 1
+      },
+      {
+        "source": "FMC WEEKEND 2025",
+        "target": "IIT (BHU) VARANASI",
+        "description": "organized_by",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHAY GOYAL",
+        "target": "NATIONAL LEVEL ABACUS COMPETITION",
+        "description": "participated_and_achieved_top_10",
+        "weight": 1
+      },
+      {
+        "source": "NATIONAL LEVEL ABACUS COMPETITION",
+        "target": "MISSION ABACUS",
+        "description": "organized_by",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHAY GOYAL",
+        "target": "GITHUB",
+        "description": "has_profile_on",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHAY GOYAL",
+        "target": "LINKEDIN",
+        "description": "has_profile_on",
+        "weight": 1
+      },
+      {
+        "source": "NIKSHAY GOYAL",
+        "target": "NYkaa",
+        "description": "participated_in_event_sponsored_by",
+        "weight": 1
+      }
+    ]
   }
 ]

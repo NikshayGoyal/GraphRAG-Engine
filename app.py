@@ -29,7 +29,7 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 html,body,[class*="css"],.stApp{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif!important}
 #MainMenu,footer{visibility:hidden}
-.block-container{padding-top:1.5rem!important;padding-bottom:2rem!important;max-width:1400px!important}
+.block-container{padding-top:3.5rem!important;padding-bottom:2rem!important;max-width:1400px!important}
 .stApp{background:#080c14}
 section[data-testid="stSidebar"]{background:#070b12!important;border-right:1px solid #141f30!important}
 .app-header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #141f30}
@@ -238,7 +238,12 @@ with tab2:
             try:
                 if isinstance(result, str):
                     import json
-                    res_json = json.loads(result)
+                    clean_res = result.strip()
+                    if clean_res.startswith("```"):
+                        clean_res = clean_res.split("\n", 1)[-1]
+                        if clean_res.endswith("```"):
+                            clean_res = clean_res.rsplit("```", 1)[0]
+                    res_json = json.loads(clean_res)
                 else:
                     res_json = result
 
@@ -261,8 +266,9 @@ with tab2:
                 </div>
                 """, unsafe_allow_html=True)
 
-            except Exception:
-                st.markdown(f'<div class="answer-card"><div class="answer-label">Answer</div>{result}</div>', unsafe_allow_html=True)
+            except Exception as e:
+                st.markdown('<div class="answer-card"><div class="answer-label">Raw Answer</div></div>', unsafe_allow_html=True)
+                st.code(result, language="json" if "{" in result else "markdown")
     st.markdown("""
     <div style="margin-top:2rem;margin-bottom:0.5rem;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#1e3a5f;">Search Modes</div>
     <div class="modes-row">
@@ -423,6 +429,6 @@ with st.sidebar:
     st.markdown("""
     <div class="sb-about">
         From-scratch implementation of Microsoft's GraphRAG architecture.<br><br>
-        Built with &nbsp;<strong style="color:#e2e8f0">Python · NetworkX · Gemini API · Streamlit</strong>
+        Built with &nbsp;<strong style="color:#e2e8f0">Python · NetworkX · Mistral AI · Streamlit</strong>
     </div>
     """, unsafe_allow_html=True)

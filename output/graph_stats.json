@@ -1,9 +1,105 @@
 {
-  "num_documents": 1,
+  "num_documents": 2,
   "num_chunks": 2,
-  "num_entities": 0,
-  "num_relationships": 0,
-  "num_communities": 0,
-  "communities": {},
-  "entity_types": {}
+  "num_entities": 72,
+  "num_relationships": 73,
+  "num_communities": 7,
+  "communities": {
+    "0": [
+      "ABHIBUS",
+      "C++",
+      "COMMUNICATION",
+      "DATA STRUCTURE & ALGORITHMS",
+      "DEEP LEARNING",
+      "DIAMOND LEAGUE",
+      "E-CELL, IIT (BHU), VARANASI",
+      "E-SUMMIT'25",
+      "EASEMYTRIP",
+      "GENERATIVE AI",
+      "GOOGLE TECHSTAR",
+      "ICICI BANK",
+      "IIT KHARAGPUR",
+      "INDIAN INSTITUTE OF TECHNOLOGY (BHU), VARANASI",
+      "KERAS",
+      "LANGCHAIN",
+      "LEADERSHIP",
+      "LLMS",
+      "MACHINE LEARNING",
+      "MATIKS",
+      "MYSQL",
+      "NATIONAL E-GOVERNANCE DIVISION",
+      "NIKSHA Y GOYAL",
+      "NLP",
+      "NUMPY",
+      "NYKAA PRESENTS FMC WEEKEND 2025",
+      "PANDAS",
+      "PROBLEM SOLVING",
+      "PURETECH DIGITAL",
+      "PYTHON",
+      "RAMESHWARAM PUBLIC SCHOOL",
+      "RBSE",
+      "SAKET PUBLIC SCHOOL",
+      "SCIKIT-LEARN",
+      "SOQ 2024",
+      "STATISTICS",
+      "STRATEGIC THINKING",
+      "TEAM WORK",
+      "TENSORFLOW",
+      "TIME MANAGEMENT",
+      "TRAINING AND PLACEMENT CELL, IIT (BHU), VARANASI"
+    ],
+    "1": [
+      "FAST FORWARD",
+      "GITHUB",
+      "IIM BANGALORE",
+      "LINKEDIN",
+      "MISSION ABACUS",
+      "NATIONAL LEVEL ABACUS COMPETITION",
+      "NIKSHAY GOYAL",
+      "NYKAA",
+      "VISTA 2024"
+    ],
+    "2": [
+      "ASPECT-BASED SENTIMENT ANALYSIS",
+      "BERT",
+      "BRAND SENTIMENT ANALYSIS",
+      "HUGGINGFACE TRANSFORMERS",
+      "PYTORCH",
+      "T5",
+      "TF-IDF",
+      "XGBOOST"
+    ],
+    "3": [
+      "GEMINI API",
+      "GRAPHRAG",
+      "GRAPHRAG ENGINE",
+      "MICROSOFT RESEARCH",
+      "NETWORKX",
+      "PYVIS",
+      "STREAMLIT"
+    ],
+    "4": [
+      "GAUSS-SEIDEL",
+      "HYBRID NUMERICAL NEURAL NETWORK",
+      "JACOBI",
+      "NEWTON-RAPHSON"
+    ],
+    "5": [
+      "FMC WEEKEND 2025",
+      "IIT (BHU) VARANASI"
+    ],
+    "6": [
+      "ABACUS"
+    ]
+  },
+  "entity_types": {
+    "person": 2,
+    "organization": 18,
+    "technology": 17,
+    "concept": 16,
+    "project": 3,
+    "tool": 2,
+    "algorithm": 5,
+    "event": 9
+  }
 }
