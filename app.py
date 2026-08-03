@@ -132,7 +132,7 @@ with col4:
 st.divider()
 
 # ─── Tabs ───
-tab1, tab2, tab3, tab4 = st.tabs(["Knowledge Graph", "Search", "Communities", "Statistics"])
+tab1, tab2, tab3, tab4 = st.tabs(["🕸️ Knowledge Graph", "🔍 Search", "🏘️ Communities", "📊 Statistics"])
 
 # ─── Tab 1: Knowledge Graph ───
 with tab1:
@@ -236,56 +236,68 @@ with tab4:
 
 # ─── Sidebar ───
 with st.sidebar:
-    st.markdown("### About")
-    st.markdown("""
-    **GraphRAG Engine** is a from-scratch implementation of
-    [Microsoft's GraphRAG](https://github.com/microsoft/graphrag) architecture.
-
-    Built with:
-    - 🐍 Python & NetworkX
-    - 🤖 Google Gemini API
-    - 📊 Streamlit
-    """)
-    st.divider()
-    st.markdown("### Pipeline Stats")
-    st.metric("Summarization Calls", "1")
-    st.metric("Without Batching", "15+")
-    st.caption("~93% reduction via single batched prompt")
-    st.divider()
-    st.markdown("[GitHub Repo](https://github.com/NikshayGoyal/GraphRAG-Engine)")
-
-    st.divider()
-    st.markdown("### 📂 Try with Your Documents")
-    st.caption("Upload your own .txt files to build a fresh knowledge graph.")
+    st.header("⚙️ GraphRAG Control Panel")
+    
+    st.markdown("### 📂 Build New Graph")
     uploaded_files = st.file_uploader(
-        "Upload documents",
-        type=["txt"],
+        "Drag and drop .txt or .pdf files here",
+        type=["txt", "pdf"],
         accept_multiple_files=True,
-        help="Each .txt file becomes a document in your knowledge graph"
+        help="Upload documents to extract entities and build a new knowledge graph."
     )
 
     if uploaded_files:
-        if st.button("🚀 Build Knowledge Graph", type="primary", use_container_width=True):
+        if st.button("🚀 Process & Build Graph", type="primary", use_container_width=True):
             import shutil
+            import os
 
-            # Clear and repopulate documents directory
             docs_dir = "data/documents"
             if os.path.exists(docs_dir):
                 shutil.rmtree(docs_dir)
             os.makedirs(docs_dir, exist_ok=True)
 
-            for file in uploaded_files:
-                with open(os.path.join(docs_dir, file.name), "wb") as f:
-                    f.write(file.read())
+            progress = st.progress(0, text="Saving documents...")
+            for i, uf in enumerate(uploaded_files):
+                if uf.name.lower().endswith(".pdf"):
+                    try:
+                        import pypdf
+                        reader = pypdf.PdfReader(uf)
+                        text = "\n".join(page.extract_text() or "" for page in reader.pages)
+                        txt_name = os.path.splitext(uf.name)[0] + ".txt"
+                        with open(os.path.join(docs_dir, txt_name), "w", encoding="utf-8") as fout:
+                            fout.write(text)
+                    except Exception as e:
+                        st.error(f"Could not read {uf.name}: {e}")
+                        continue
+                else:
+                    with open(os.path.join(docs_dir, uf.name), "wb") as fout:
+                        fout.write(uf.read())
+                progress.progress((i + 1) / len(uploaded_files), text=f"Saved {uf.name}")
 
-            st.info(f"📄 {len(uploaded_files)} document(s) uploaded. Building graph...")
-
-            with st.spinner("🔄 Running pipeline — this takes 30–60 seconds..."):
+            with st.spinner("🔄 Running pipeline (takes 30-60s)..."):
                 try:
                     from pipeline import run_pipeline
                     run_pipeline()
-                    load_graph_data.clear()  # Clear cached data so new graph loads
-                    st.success("✅ Knowledge graph built! Refreshing...")
+                    load_graph_data.clear()
+                    st.success("✅ Knowledge graph built!")
                     st.rerun()
                 except Exception as e:
                     st.error(f"Pipeline error: {e}")
+
+    st.divider()
+
+    st.markdown("### ⚡ Cost Optimization")
+    st.info(
+        "**Batched Community Summarization**\n\n"
+        "A standard GraphRAG makes **one LLM call per community** to generate summaries. "
+        "This engine batches all community structures into **one single LLM prompt**.\n\n"
+        "**Result:** Reduces API calls by ~93%."
+    )
+
+    st.divider()
+    
+    st.markdown("### About")
+    st.caption(
+        "From-scratch implementation of Microsoft's GraphRAG architecture using **Python, NetworkX, and the Gemini API**."
+    )
+
