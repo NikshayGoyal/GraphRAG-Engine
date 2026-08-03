@@ -47,6 +47,120 @@ st.markdown("""
     .stTabs [aria-selected="true"] {
         background-color: #3b82f6 !important; color: white !important;
     }
+    /* ── Sidebar Styles ── */
+    .sb-header {
+        background: linear-gradient(135deg, #1e3a5f 0%, #1e293b 100%);
+        border-radius: 10px;
+        padding: 14px 16px;
+        border: 1px solid #2d4a6e;
+        margin-bottom: 4px;
+    }
+    .sb-header h2 {
+        font-size: 1rem; font-weight: 700; color: #e2e8f0;
+        margin: 0; letter-spacing: 0.5px;
+    }
+    .sb-header p {
+        font-size: 0.72rem; color: #64748b;
+        margin: 2px 0 0 0; letter-spacing: 0.3px;
+    }
+    .sb-section-label {
+        font-size: 0.68rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 1.8px;
+        color: #475569; margin: 16px 0 8px 2px;
+    }
+    .sb-card {
+        background: #1e293b;
+        border-radius: 10px;
+        padding: 14px 16px;
+        border: 1px solid #2d3748;
+        margin-bottom: 8px;
+    }
+    .sb-stat-row {
+        display: flex; justify-content: space-between;
+        align-items: center; padding: 7px 0;
+        border-bottom: 1px solid #263344;
+        font-size: 0.82rem;
+    }
+    .sb-stat-row:last-of-type { border-bottom: none; }
+    .sb-stat-label { color: #94a3b8; }
+    .sb-stat-value { font-weight: 600; color: #f8fafc; }
+    .sb-badge {
+        margin-top: 10px;
+        padding: 7px 12px;
+        background: #0f2318;
+        border-radius: 7px;
+        border-left: 3px solid #22c55e;
+        font-size: 0.78rem;
+        color: #86efac;
+        font-weight: 500;
+    }
+    .sb-about {
+        padding: 10px 14px;
+        background: #0f172a;
+        border-radius: 8px;
+        border: 1px solid #1e293b;
+        font-size: 0.76rem;
+        color: #64748b;
+        line-height: 1.5;
+    }
+    /* ── File Uploader Overrides ── */
+    [data-testid="stFileUploader"] {
+        width: 100%;
+    }
+    [data-testid="stFileUploaderDropzone"] {
+        background: #0f172a !important;
+        border: 2px dashed #334155 !important;
+        border-radius: 10px !important;
+        padding: 20px 12px !important;
+        transition: border-color 0.2s ease, background 0.2s ease;
+        text-align: center;
+    }
+    [data-testid="stFileUploaderDropzone"]:hover {
+        border-color: #60a5fa !important;
+        background: #0d1f3c !important;
+    }
+    [data-testid="stFileUploaderDropzoneInstructions"] > div > span {
+        font-size: 0.78rem !important;
+        color: #94a3b8 !important;
+    }
+    [data-testid="stFileUploaderDropzoneInstructions"] > div > small {
+        font-size: 0.7rem !important;
+        color: #475569 !important;
+    }
+    [data-testid="stFileUploaderDropzoneInstructions"] svg {
+        fill: #3b82f6 !important;
+        width: 28px !important;
+        height: 28px !important;
+    }
+    [data-testid="stFileUploader"] section > button {
+        background: #1e3a5f !important;
+        border: 1px solid #2d4a6e !important;
+        color: #93c5fd !important;
+        border-radius: 8px !important;
+        font-size: 0.78rem !important;
+        padding: 4px 14px !important;
+    }
+    [data-testid="stFileUploader"] section > button:hover {
+        background: #1e40af !important;
+        border-color: #60a5fa !important;
+        color: #fff !important;
+    }
+    /* Uploaded file item */
+    [data-testid="stFileUploaderFile"] {
+        background: #1e293b !important;
+        border-radius: 8px !important;
+        border: 1px solid #334155 !important;
+        padding: 6px 10px !important;
+        margin-top: 6px !important;
+    }
+    [data-testid="stFileUploaderFileName"] {
+        color: #e2e8f0 !important;
+        font-size: 0.78rem !important;
+    }
+    [data-testid="stFileUploaderFileSize"] {
+        color: #64748b !important;
+        font-size: 0.72rem !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -236,20 +350,34 @@ with tab4:
 
 # ─── Sidebar ───
 with st.sidebar:
-    st.header("⚙️ GraphRAG Control Panel")
-    
-    st.markdown("### 📂 Build New Graph")
+
+    # Header card
+    st.markdown("""
+    <div class="sb-header">
+        <h2>⚙️ GraphRAG Control Panel</h2>
+        <p>Build and explore knowledge graphs from your documents</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ── Upload Section ──
+    st.markdown('<div class="sb-section-label">📂 Build New Graph</div>', unsafe_allow_html=True)
     uploaded_files = st.file_uploader(
-        "Drag and drop .txt or .pdf files here",
-        type=["txt", "pdf"],
+        "Drop files here",
+        type=["txt", "pdf", "docx", "md"],
         accept_multiple_files=True,
-        help="Upload documents to extract entities and build a new knowledge graph."
+        help="Supports .txt, .pdf, .docx, and .md files.",
+        label_visibility="collapsed"
     )
 
     if uploaded_files:
+        for uf in uploaded_files:
+            ext = uf.name.lower().rsplit(".", 1)[-1]
+            icon = {"pdf": "📑", "docx": "📝", "md": "📌"}.get(ext, "📄")
+            st.caption(f"{icon} {uf.name}  —  {round(uf.size/1024, 1)} KB")
+
         if st.button("🚀 Process & Build Graph", type="primary", use_container_width=True):
             import shutil
-            import os
+            import io
 
             docs_dir = "data/documents"
             if os.path.exists(docs_dir):
@@ -258,46 +386,66 @@ with st.sidebar:
 
             progress = st.progress(0, text="Saving documents...")
             for i, uf in enumerate(uploaded_files):
-                if uf.name.lower().endswith(".pdf"):
-                    try:
+                ext = uf.name.lower().rsplit(".", 1)[-1]
+                base_name = os.path.splitext(uf.name)[0] + ".txt"
+                out_path = os.path.join(docs_dir, base_name)
+
+                try:
+                    if ext == "pdf":
                         import pypdf
-                        reader = pypdf.PdfReader(uf)
+                        reader = pypdf.PdfReader(io.BytesIO(uf.read()))
                         text = "\n".join(page.extract_text() or "" for page in reader.pages)
-                        txt_name = os.path.splitext(uf.name)[0] + ".txt"
-                        with open(os.path.join(docs_dir, txt_name), "w", encoding="utf-8") as fout:
-                            fout.write(text)
-                    except Exception as e:
-                        st.error(f"Could not read {uf.name}: {e}")
-                        continue
-                else:
-                    with open(os.path.join(docs_dir, uf.name), "wb") as fout:
-                        fout.write(uf.read())
+                    elif ext == "docx":
+                        import docx as docxlib
+                        doc = docxlib.Document(io.BytesIO(uf.read()))
+                        text = "\n".join(p.text for p in doc.paragraphs if p.text.strip())
+                    else:  # .txt and .md — read as plain text
+                        text = uf.read().decode("utf-8", errors="ignore")
+
+                    with open(out_path, "w", encoding="utf-8") as fout:
+                        fout.write(text)
+                except Exception as e:
+                    st.error(f"Could not read {uf.name}: {e}")
+                    continue
+
                 progress.progress((i + 1) / len(uploaded_files), text=f"Saved {uf.name}")
 
-            with st.spinner("🔄 Running pipeline (takes 30-60s)..."):
+            with st.spinner("🔄 Running pipeline — ~30–60 seconds..."):
                 try:
-                    from pipeline import run_pipeline
-                    run_pipeline()
-                    load_graph_data.clear()
-                    st.success("✅ Knowledge graph built!")
-                    st.rerun()
+                    import os
+                    api_key = os.getenv("GEMINI_API_KEY", "")
+                    if not api_key:
+                        st.error("Missing GEMINI_API_KEY in environment.")
+                    else:
+                        from pipeline import run_pipeline
+                        run_pipeline(input_dir="data/documents", output_dir="output", api_key=api_key)
+                        load_graph_data.clear()
+                        st.success("✅ Done! Explore the tabs above.")
+                        st.rerun()
                 except Exception as e:
                     st.error(f"Pipeline error: {e}")
 
-    st.divider()
+    # ── Optimization Card ──
+    st.markdown('<div class="sb-section-label">⚡ Cost Optimization</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div class="sb-card">
+        <div class="sb-stat-row">
+            <span class="sb-stat-label">🔴 Standard approach</span>
+            <span class="sb-stat-value">15 LLM calls</span>
+        </div>
+        <div class="sb-stat-row">
+            <span class="sb-stat-label">🟢 Our approach</span>
+            <span class="sb-stat-value">1 batched call</span>
+        </div>
+        <div class="sb-badge">↓ ~93% cost reduction via batched prompt</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown("### ⚡ Cost Optimization")
-    st.info(
-        "**Batched Community Summarization**\n\n"
-        "A standard GraphRAG makes **one LLM call per community** to generate summaries. "
-        "This engine batches all community structures into **one single LLM prompt**.\n\n"
-        "**Result:** Reduces API calls by ~93%."
-    )
-
-    st.divider()
-    
-    st.markdown("### About")
-    st.caption(
-        "From-scratch implementation of Microsoft's GraphRAG architecture using **Python, NetworkX, and the Gemini API**."
-    )
-
+    # ── About ──
+    st.markdown('<div class="sb-section-label">About</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div class="sb-about">
+        From-scratch implementation of Microsoft's GraphRAG architecture.<br><br>
+        Built with &nbsp;<strong style="color:#e2e8f0">Python · NetworkX · Gemini API · Streamlit</strong>
+    </div>
+    """, unsafe_allow_html=True)
