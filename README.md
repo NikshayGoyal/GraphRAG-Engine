@@ -68,7 +68,7 @@ cd GraphRAG-Engine
 pip install -r requirements.txt
 
 # Configure API key
-echo "GEMINI_API_KEY=your_key_here" > .env
+echo "MISTRAL_API_KEY=your_key_here" > .env
 
 # Run the indexing pipeline
 python pipeline.py

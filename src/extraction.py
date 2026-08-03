@@ -3,7 +3,7 @@
 import json
 import re
 import time
-from google import genai
+from mistralai.client import Mistral
 
 
 EXTRACTION_PROMPT = """You are an expert at extracting structured knowledge from text.
@@ -30,30 +30,28 @@ Rules:
 """
 
 
-def call_gemini(prompt: str, api_key: str, retries: int = 3) -> str | None:
-    """Call Gemini API with exponential backoff retry logic.
+def call_mistral(prompt: str, api_key: str, retries: int = 3) -> str | None:
+    """Call Mistral API with exponential backoff retry logic.
 
     Args:
         prompt: The prompt to send.
-        api_key: Google Gemini API key.
+        api_key: Mistral API key.
         retries: Number of retry attempts on failure.
 
     Returns:
         Raw response text, or None if all retries fail.
     """
-    client = genai.Client(api_key=api_key)
+    client = Mistral(api_key=api_key)
 
     for attempt in range(retries):
         try:
-            response = client.models.generate_content(
-                model="gemini-2.5-flash-lite",
-                contents=prompt,
-                config={
-                    "response_mime_type": "application/json",
-                    "temperature": 0.1,
-                },
+            response = client.chat.complete(
+                model="mistral-small-latest",
+                messages=[{"role": "user", "content": prompt}],
+                response_format={"type": "json_object"},
+                temperature=0.1,
             )
-            return response.text
+            return response.choices[0].message.content
         except Exception as e:
             print(f"  [Retry {attempt+1}/{retries}] API error: {str(e)[:80]}")
             time.sleep(5 * (attempt + 1))
@@ -71,7 +69,7 @@ def extract_entities_relationships(text: str, api_key: str) -> dict:
     Returns:
         Dict with 'entities' and 'relationships' lists.
     """
-    raw = call_gemini(EXTRACTION_PROMPT.format(text=text), api_key)
+    raw = call_mistral(EXTRACTION_PROMPT.format(text=text), api_key)
     if not raw:
         return {"entities": [], "relationships": []}
 

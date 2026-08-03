@@ -122,9 +122,9 @@ if __name__ == "__main__":
     parser.add_argument("--output", default="output", help="Output directory")
     args = parser.parse_args()
 
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("MISTRAL_API_KEY")
     if not api_key:
-        print("Error: Set GEMINI_API_KEY in .env file")
+        print("Error: Set MISTRAL_API_KEY in .env file")
         exit(1)
 
     run_pipeline(args.input, args.output, api_key)

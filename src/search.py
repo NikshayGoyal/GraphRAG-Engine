@@ -1,8 +1,8 @@
 """Local and Global search engines for querying the knowledge graph."""
 
-from google import genai
+
 import networkx as nx
-from .extraction import call_gemini
+from .extraction import call_mistral
 
 
 def local_search(
@@ -23,7 +23,7 @@ def local_search(
         G: The knowledge graph.
         community_summaries: Dict of community summaries.
         chunks: Original text chunks for additional context.
-        api_key: Google Gemini API key.
+        api_key: Mistral API key.
 
     Returns:
         LLM-generated answer string.
@@ -74,10 +74,10 @@ QUESTION: {query}
 
 Provide a detailed answer citing specific entities and relationships."""
 
-    response_text = call_gemini(prompt, api_key, retries=3)
+    response_text = call_mistral(prompt, api_key, retries=3)
     if response_text:
         return response_text
-    return "**Error generating response:** The Gemini API is currently experiencing high demand (503) or the API key is invalid. Please try again later."
+    return "**Error generating response:** The Mistral API is currently experiencing high demand (503) or the API key is invalid. Please try again later."
 
 
 def global_search(
@@ -91,7 +91,7 @@ def global_search(
     Args:
         query: User's natural language question.
         community_summaries: Dict of community summaries.
-        api_key: Google Gemini API key.
+        api_key: Mistral API key.
 
     Returns:
         LLM-generated answer string.
@@ -110,7 +110,7 @@ QUESTION: {query}
 
 Synthesize across all relevant communities. Highlight themes and connections."""
 
-    response_text = call_gemini(prompt, api_key, retries=3)
+    response_text = call_mistral(prompt, api_key, retries=3)
     if response_text:
         return response_text
-    return "**Error generating response:** The Gemini API is currently experiencing high demand (503) or the API key is invalid. Please try again later."
+    return "**Error generating response:** The Mistral API is currently experiencing high demand (503) or the API key is invalid. Please try again later."

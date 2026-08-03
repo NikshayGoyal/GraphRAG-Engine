@@ -72,9 +72,9 @@ hr{border-color:#141f30!important;margin:1.5rem 0!important}
 .mode-card{flex:1;background:#0c1220;border:1px solid #141f30;border-radius:8px;padding:14px 16px}
 .mode-title{font-size:.78rem;font-weight:600;color:#64748b;margin-bottom:5px}
 .mode-body{font-size:.76rem;color:#334155;line-height:1.6}
-.sb-header{background:#0c1220;border-radius:8px;padding:13px 15px;border:1px solid #141f30;margin-bottom:2px}
-.sb-header h2{font-size:.9rem;font-weight:700;color:#f1f5f9;margin:0;letter-spacing:-.2px}
-.sb-header p{font-size:.68rem;color:#334155;margin:3px 0 0 0}
+.sb-header{background:#0c1220;border-radius:10px;padding:18px 20px;border:1px solid #1e2d45;margin-bottom:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)}
+.sb-header h2{font-size:1.05rem;font-weight:700;color:#f8fafc;margin:0;letter-spacing:-.3px}
+.sb-header p{font-size:.75rem;color:#64748b;margin:5px 0 0 0;line-height:1.4}
 .sb-section-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:2.2px;color:#1e3a5f;margin:18px 0 8px 1px}
 .sb-card{background:#0c1220;border-radius:8px;padding:13px 15px;border:1px solid #141f30;margin-bottom:6px}
 .sb-stat-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #0a101c;font-size:.78rem}
@@ -84,11 +84,11 @@ hr{border-color:#141f30!important;margin:1.5rem 0!important}
 .sb-badge{margin-top:10px;padding:6px 11px;background:#031a0e;border-radius:6px;border-left:2px solid #10b981;font-size:.74rem;color:#6ee7b7;font-weight:500}
 .sb-about{padding:10px 14px;background:#05080f;border-radius:8px;border:1px solid #0c1220;font-size:.72rem;color:#334155;line-height:1.7}
 [data-testid="stFileUploader"]{width:100%}
-[data-testid="stFileUploaderDropzone"]{background:#05080f!important;border:1.5px dashed #141f30!important;border-radius:8px!important;padding:18px 12px!important;transition:border-color 150ms ease,background 150ms ease!important}
-[data-testid="stFileUploaderDropzone"]:hover{border-color:#2563eb!important;background:#080d1a!important}
-[data-testid="stFileUploaderDropzoneInstructions"]>div>span{font-size:.73rem!important;color:#334155!important}
-[data-testid="stFileUploaderDropzoneInstructions"]>div>small{font-size:.67rem!important;color:#1e2d45!important}
-[data-testid="stFileUploaderDropzoneInstructions"] svg{fill:#2563eb!important;width:22px!important;height:22px!important}
+[data-testid="stFileUploaderDropzone"]{background:#0a0f18!important;border:2px dashed #1e2d45!important;border-radius:12px!important;padding:24px 16px!important;transition:border-color 150ms ease,background 150ms ease!important;min-height:140px;display:flex;align-items:center;justify-content:center}
+[data-testid="stFileUploaderDropzone"]:hover{border-color:#3b82f6!important;background:#0d1522!important}
+[data-testid="stFileUploaderDropzoneInstructions"]>div>span{font-size:.8rem!important;color:#94a3b8!important;font-weight:500!important}
+[data-testid="stFileUploaderDropzoneInstructions"]>div>small{font-size:.7rem!important;color:#475569!important}
+[data-testid="stFileUploaderDropzoneInstructions"] svg{fill:#3b82f6!important;width:28px!important;height:28px!important;margin-bottom:8px!important}
 [data-testid="stFileUploader"] section>button{background:#0c1220!important;border:1px solid #1e2d45!important;color:#64748b!important;border-radius:6px!important;font-size:.73rem!important;padding:3px 12px!important;transition:all 150ms ease!important}
 [data-testid="stFileUploader"] section>button:hover{background:#1e3a5f!important;border-color:#2563eb!important;color:#93c5fd!important}
 [data-testid="stFileUploaderFile"]{background:#0c1220!important;border-radius:6px!important;border:1px solid #141f30!important;padding:5px 10px!important;margin-top:5px!important}
@@ -219,9 +219,9 @@ with tab2:
         search_type = st.radio("Mode", ["Local", "Global"], horizontal=True, label_visibility="collapsed")
 
     if query:
-        api_key = os.getenv("GEMINI_API_KEY", "")
+        api_key = os.getenv("MISTRAL_API_KEY", "")
         if not api_key:
-            st.warning("Set GEMINI_API_KEY in .env to enable search")
+            st.warning("Set MISTRAL_API_KEY in .env to enable search")
         else:
             with st.spinner(f"Running {search_type} Search..."):
                 from src.search import local_search, global_search
@@ -376,9 +376,9 @@ with st.sidebar:
             with st.status("Running GraphRAG Pipeline...", expanded=True) as status_box:
                 try:
                     import os
-                    api_key = os.getenv("GEMINI_API_KEY", "")
+                    api_key = os.getenv("MISTRAL_API_KEY", "")
                     if not api_key:
-                        status_box.update(label="Missing GEMINI_API_KEY in environment.", state="error")
+                        status_box.update(label="Missing MISTRAL_API_KEY in environment.", state="error")
                     else:
                         from pipeline import run_pipeline
                         import sys

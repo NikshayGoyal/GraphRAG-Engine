@@ -3,7 +3,7 @@
 import json
 import networkx as nx
 from networkx.algorithms.community import greedy_modularity_communities
-from .extraction import call_gemini
+from .extraction import call_mistral
 
 
 def detect_communities(G: nx.Graph) -> dict[int, list[str]]:
@@ -39,7 +39,7 @@ def generate_community_summaries(
     Args:
         community_map: Dict mapping community IDs to member lists.
         G: The knowledge graph.
-        api_key: Google Gemini API key.
+        api_key: Mistral API key.
 
     Returns:
         Dict mapping community IDs to summary strings.
@@ -75,7 +75,7 @@ def generate_community_summaries(
         "Return ONLY valid JSON, no markdown."
     )
 
-    raw = call_gemini(prompt, api_key)
+    raw = call_mistral(prompt, api_key)
     if raw:
         try:
             parsed = json.loads(raw)

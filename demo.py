@@ -38,9 +38,9 @@ def run_interactive_search():
     """Launch interactive search mode."""
     from src.search import local_search, global_search
 
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("MISTRAL_API_KEY")
     if not api_key:
-        print("\nSet GEMINI_API_KEY in .env to enable search.")
+        print("\nSet MISTRAL_API_KEY in .env to enable search.")
         return
 
     G = nx.read_gml("output/knowledge_graph.gml")

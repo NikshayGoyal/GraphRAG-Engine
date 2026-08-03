@@ -1,0 +1,52 @@
+NIKSHA Y GOY AL
+EDUCATION
+Indian Institute of T echnology (BHU), V aranasi 2023 - 2028
+Integrated Dual Degree in Mining Engineering 8.39
+Rameshwaram Public School 2023
+RBSE (Class XII) 83.40%
+Saket Public School 2021
+RBSE (Class X) 98.00%
+SKILLS
+• Languages and Technologies: C++, Python, MySQL, Scikit-learn, NumPy, Pandas, TensorFlow, Keras, LangChain
+• Interests : Data Structure & Algorithms, Machine Learning, Deep Learning, Statistics, Generative AI, NLP, LLMs
+• Soft Skills: Leadership, Problem Solving, Strategic thinking, Communication, Team Work, Time Management
+PROJECTS
+Brand Sentiment Analysis GitHub
+Implemented a 5-stage NLP pipeline for brand-level sentiment analysis on multilingual data across 3 languages
+• ImplementedTF-IDF + XGBoost filtering on75,000+ multilingual texts as a lightweight gate before BERT and T5 stages.
+• Extracted 108 brandsacross 3 languagesusing regex,37 Hindi-to-Englishmappings, and typo-tolerantfuzzy matching.
+• Developedaspect-based sentimentmodule across10 product features, usedBERTfor classification andT5 for headlines.
+Exposure: NLP, BERT, T5, XGBoost, TF-IDF, PyTorch, HuggingFace Transformers, Aspect-Based Sentiment Analysis
+GraphRAG Engine GitHub
+Built a Graph-based RAG engine from scratch inspired by Microsoft Research’s GraphRAG architecture
+• Builta GraphRAGenginefromscratch inspiredbyMicrosoftResearch(2024), implementinga 5-stageindexingpipeline .
+• Extracted 119 entitiesand 127 relationshipsacross 8 typesusing Gemini API in∼5 API callsvs Microsoft’s ∼1000+.
+• Constructed aknowledge graphwithNetworkXand detected15 thematic communitiesvia greedy modularity algorithm.
+• Deployed a liveStreamlit dashboard on Streamlit Cloud withPyVis graph visualization andLocal/Global searchinterface.
+Exposure: GraphRAG, Knowledge Graphs, Prompt Engineering, Community Detection, NetworkX, Gemini API, Streamlit
+Hybrid Numerical Neural Network GitHub
+Implemented a numerical methods integrated neural network from scratch
+• Built hybrid weight updates usingGauss-Seidel,Newton-Raphson, Jacobi &block-wise solvers on a NumPy-only network.
+• Incorporated polynomial learning ratescheduling across 6 solvers; square-root decay performed best (R2=0.847).
+• Achieved10x faster convergence: Damped Newton (R2=0.872) in 50 vs. Gradient Descent (R2=0.840) in 500 epochs.
+Exposure: Numerical Methods, Neural Networks, Backpropagation, Weight Initialization, Convergence Analysis
+POSITIONS OF RESPONSIBILITY
+Core T eam April 2026 - Present
+Training and Placement Cell, IIT (BHU), Varanasi
+• Leading a team of200+ coordinators to streamline on-campus Internships and Placements for3000+ students.
+• Nurtured connections with80+ recruiters, significantly enhancing career prospects for the students of IIT(BHU).
+• Contributed as a part of managerial committee forCareer Development Program, organized by the Placement Cell.
+Relations Associate July 2024 - May 2025
+E-Cell, IIT (BHU), Varanasi
+• Secured sponsorships worthINR 2.5L+from ICICI Bankand National e-Governance Divisionfor E-Summit’25.
+• Secured partnerships withAbhiBus and EaseMyTrip, recruitingPuretech DigitalVP asGoogle Techstarspanelist.
+• Coordinated across teams to manage stakeholder relations and ensure seamless execution of flagship entrepreneurship events.
+ACHIEVEMENTS
+• Solved 350+ DSA problemson LeetCode and GeeksforGeeks, sharpening problem-solving and algorithmic skills.
+• Certified with Meritby IIT Kharagpurin quantitative finance, completing Elementary & Advanced modules (SoQ 2024).
+• Among thetop 1%Mental Mathematics players onMatiks | Diamond League| Max Rating : 1526 | Handle : Matiks
+• Topped IIM Bangalore’s virtual trading competition(Fast Forward)at Vista 2024, outperforming8000+ participants.
+EXTRA CURRICULARS
+• Runner-up in Rant It atNykaa presents FMC Weekend 2025, India’s premier digital arts fest byIIT (BHU) Varanasi.
+• Achieved Top 10 finishin theNational Level Abacus Competitionby Mission Abacus (2020), among 500+ participants.
+T: 9828928333 E: nikshaygoyal704@gmail.com GitHub: NikshayGoyal LinkedIn: Nikshay Goyal
