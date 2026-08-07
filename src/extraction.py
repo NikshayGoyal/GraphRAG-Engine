@@ -1,4 +1,4 @@
-"""LLM-powered entity and relationship extraction using Google Gemini."""
+"""LLM-powered entity and relationship extraction using Mistral AI."""
 
 import json
 import re
@@ -60,11 +60,11 @@ def call_mistral(prompt: str, api_key: str, retries: int = 3) -> str | None:
 
 
 def extract_entities_relationships(text: str, api_key: str) -> dict:
-    """Extract entities and relationships from text using Gemini.
+    """Extract entities and relationships from text using Mistral.
 
     Args:
         text: Input text to analyze.
-        api_key: Google Gemini API key.
+        api_key: Mistral API key.
 
     Returns:
         Dict with 'entities' and 'relationships' lists.

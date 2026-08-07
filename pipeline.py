@@ -30,7 +30,7 @@ def run_pipeline(input_dir: str, output_dir: str, api_key: str):
     Args:
         input_dir: Path to directory containing .txt documents.
         output_dir: Path to save generated artifacts.
-        api_key: Google Gemini API key.
+        api_key: Mistral API key.
 
     Returns:
         Tuple of (graph, community_map, summaries, chunks).
