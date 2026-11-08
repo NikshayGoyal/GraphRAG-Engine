@@ -1,53 +1,52 @@
-"""Knowledge graph construction from extracted entities and relationships."""
-
+"""Directed evidence graph; alias merges require an explicit reviewed mapping."""
+import re
+import unicodedata
 import networkx as nx
 
 
-def build_knowledge_graph(extractions: list[dict]) -> nx.Graph:
-    """Build a NetworkX graph from LLM-extracted data.
+def canonical(name):
+    return re.sub(r'\s+', ' ', unicodedata.normalize('NFKC', name)).strip().upper()
 
-    Merges duplicate entities and accumulates edge weights when
-    the same relationship appears across multiple text chunks.
 
-    Args:
-        extractions: List of extraction dicts, each containing
-                     'entities' and 'relationships' lists.
+def build_knowledge_graph(extractions: list[dict], aliases=None) -> nx.MultiDiGraph:
+    aliases = {canonical(k): canonical(v) for k, v in (aliases or {}).items()}
+    def key(name):
+        name = canonical(name)
+        return aliases.get(name, name)
+    graph = nx.MultiDiGraph()
+    for item in extractions:
+        cid = item['chunk_id']
+        for entity in item['entities']:
+            name = key(entity['name'])
+            if name not in graph:
+                graph.add_node(name, type=entity['type'], description=entity['description'], chunk_ids=[], aliases=[])
+            attrs = graph.nodes[name]
+            if cid not in attrs['chunk_ids']:
+                attrs['chunk_ids'].append(cid)
+            if entity['name'] not in attrs['aliases']:
+                attrs['aliases'].append(entity['name'])
+        for rel in item['relationships']:
+            source, target = key(rel['source']), key(rel['target'])
+            predicate = rel['predicate'].strip().lower()
+            if graph.has_edge(source, target, predicate):
+                attrs = graph[source][target][predicate]
+                if cid not in attrs['chunk_ids']:
+                    attrs['chunk_ids'].append(cid)
+                    attrs['weight'] += 1
+                if rel['description'] not in attrs['descriptions']:
+                    attrs['descriptions'].append(rel['description'])
+            else:
+                graph.add_edge(source, target, key=predicate, predicate=predicate, weight=1,
+                               descriptions=[rel['description']], chunk_ids=[cid])
+    return graph
 
-    Returns:
-        A NetworkX Graph with typed, described nodes and weighted edges.
-    """
-    G = nx.Graph()
-    entity_map = {}
 
-    # Add entities as nodes
-    for extraction in extractions:
-        for entity in extraction.get("entities", []):
-            name = entity["name"].upper().strip()
-            if name not in entity_map:
-                entity_map[name] = entity
-                G.add_node(
-                    name,
-                    type=entity.get("type", "unknown"),
-                    description=entity.get("description", ""),
-                )
-
-    # Add relationships as weighted edges
-    for extraction in extractions:
-        for rel in extraction.get("relationships", []):
-            src = rel["source"].upper().strip()
-            tgt = rel["target"].upper().strip()
-            if src in G.nodes and tgt in G.nodes:
-                if G.has_edge(src, tgt):
-                    G[src][tgt]["weight"] += rel.get("weight", 1)
-                    G[src][tgt]["descriptions"].append(
-                        rel.get("description", "")
-                    )
-                else:
-                    G.add_edge(
-                        src,
-                        tgt,
-                        weight=rel.get("weight", 1),
-                        descriptions=[rel.get("description", "")],
-                    )
-
-    return G
+def community_projection(graph):
+    projected = nx.Graph()
+    projected.add_nodes_from(graph.nodes)
+    for source, target, attrs in graph.edges(data=True):
+        if source == target:
+            continue
+        weight = projected.get_edge_data(source, target, {}).get('weight', 0) + attrs['weight']
+        projected.add_edge(source, target, weight=weight)
+    return projected
