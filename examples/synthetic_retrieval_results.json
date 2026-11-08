@@ -1,0 +1,282 @@
+{
+  "dataset": "synthetic-fixture-v1",
+  "scope": "retrieval-only; not answer accuracy or external validation",
+  "index_id": "b020f96ed50a06a1ed187ad4",
+  "top_k": 3,
+  "summary": [
+    {
+      "mode": "TF-IDF baseline",
+      "scored_questions": 5,
+      "mean_required_source_recall": 0.9333333333333333,
+      "all_sources_rate": 0.8,
+      "p50_seconds": 0.0007671090000371805,
+      "p95_seconds": 0.003630637000014758
+    },
+    {
+      "mode": "Graph + text",
+      "scored_questions": 5,
+      "mean_required_source_recall": 0.9333333333333333,
+      "all_sources_rate": 0.8,
+      "p50_seconds": 0.0008559270000318975,
+      "p95_seconds": 0.0011330270000371456
+    },
+    {
+      "mode": "Community + text",
+      "scored_questions": 5,
+      "mean_required_source_recall": 0.7,
+      "all_sources_rate": 0.4,
+      "p50_seconds": 0.0015082390000316082,
+      "p95_seconds": 0.0016334069999857093
+    }
+  ],
+  "rows": [
+    {
+      "question_id": "fact-1",
+      "category": "factual",
+      "mode": "TF-IDF baseline",
+      "required_source_recall": 1.0,
+      "all_required_sources": true,
+      "retrieval_seconds": 0.003630637000014758,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "02_boreal_operations.txt",
+        "04_falcon_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "fact-1",
+      "category": "factual",
+      "mode": "Graph + text",
+      "required_source_recall": 1.0,
+      "all_required_sources": true,
+      "retrieval_seconds": 0.0011330270000371456,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "02_boreal_operations.txt",
+        "04_falcon_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "fact-1",
+      "category": "factual",
+      "mode": "Community + text",
+      "required_source_recall": 1.0,
+      "all_required_sources": true,
+      "retrieval_seconds": 0.0016334069999857093,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "02_boreal_operations.txt",
+        "05_grove_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "fact-2",
+      "category": "factual",
+      "mode": "TF-IDF baseline",
+      "required_source_recall": 1.0,
+      "all_required_sources": true,
+      "retrieval_seconds": 0.000782201999982135,
+      "retrieved_sources": [
+        "02_boreal_operations.txt",
+        "03_cedar_risk.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "fact-2",
+      "category": "factual",
+      "mode": "Graph + text",
+      "required_source_recall": 1.0,
+      "all_required_sources": true,
+      "retrieval_seconds": 0.0009163329999637426,
+      "retrieved_sources": [
+        "02_boreal_operations.txt",
+        "03_cedar_risk.txt",
+        "05_grove_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "fact-2",
+      "category": "factual",
+      "mode": "Community + text",
+      "required_source_recall": 1.0,
+      "all_required_sources": true,
+      "retrieval_seconds": 0.0015376229999901625,
+      "retrieved_sources": [
+        "02_boreal_operations.txt",
+        "03_cedar_risk.txt",
+        "05_grove_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "multi-1",
+      "category": "multi_hop",
+      "mode": "TF-IDF baseline",
+      "required_source_recall": 1.0,
+      "all_required_sources": true,
+      "retrieval_seconds": 0.0007686610000519067,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "02_boreal_operations.txt",
+        "03_cedar_risk.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "multi-1",
+      "category": "multi_hop",
+      "mode": "Graph + text",
+      "required_source_recall": 1.0,
+      "all_required_sources": true,
+      "retrieval_seconds": 0.0008536390000699612,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "02_boreal_operations.txt",
+        "03_cedar_risk.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "multi-1",
+      "category": "multi_hop",
+      "mode": "Community + text",
+      "required_source_recall": 0.6666666666666666,
+      "all_required_sources": false,
+      "retrieval_seconds": 0.0015595759999769143,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "02_boreal_operations.txt",
+        "05_grove_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "multi-2",
+      "category": "multi_hop",
+      "mode": "TF-IDF baseline",
+      "required_source_recall": 1.0,
+      "all_required_sources": true,
+      "retrieval_seconds": 0.0007655570000224543,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "04_falcon_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "multi-2",
+      "category": "multi_hop",
+      "mode": "Graph + text",
+      "required_source_recall": 1.0,
+      "all_required_sources": true,
+      "retrieval_seconds": 0.0008080200000222248,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "02_boreal_operations.txt",
+        "04_falcon_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "multi-2",
+      "category": "multi_hop",
+      "mode": "Community + text",
+      "required_source_recall": 0.5,
+      "all_required_sources": false,
+      "retrieval_seconds": 0.0014788550000730538,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "02_boreal_operations.txt",
+        "05_grove_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "theme-1",
+      "category": "thematic",
+      "mode": "TF-IDF baseline",
+      "required_source_recall": 0.6666666666666666,
+      "all_required_sources": false,
+      "retrieval_seconds": 0.0007558319999816376,
+      "retrieved_sources": [
+        "04_falcon_report.txt",
+        "05_grove_report.txt",
+        "06_harbor_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "theme-1",
+      "category": "thematic",
+      "mode": "Graph + text",
+      "required_source_recall": 0.6666666666666666,
+      "all_required_sources": false,
+      "retrieval_seconds": 0.0007680700000491925,
+      "retrieved_sources": [
+        "04_falcon_report.txt",
+        "05_grove_report.txt",
+        "06_harbor_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "theme-1",
+      "category": "thematic",
+      "mode": "Community + text",
+      "required_source_recall": 0.3333333333333333,
+      "all_required_sources": false,
+      "retrieval_seconds": 0.0014370320000125503,
+      "retrieved_sources": [
+        "02_boreal_operations.txt",
+        "05_grove_report.txt",
+        "06_harbor_report.txt"
+      ],
+      "unanswerable": false
+    },
+    {
+      "question_id": "unknown-1",
+      "category": "unanswerable",
+      "mode": "TF-IDF baseline",
+      "required_source_recall": null,
+      "all_required_sources": null,
+      "retrieval_seconds": 0.0007643650000090929,
+      "retrieved_sources": [
+        "01_aster_report.txt"
+      ],
+      "unanswerable": true
+    },
+    {
+      "question_id": "unknown-1",
+      "category": "unanswerable",
+      "mode": "Graph + text",
+      "required_source_recall": null,
+      "all_required_sources": null,
+      "retrieval_seconds": 0.0008582149999938338,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "02_boreal_operations.txt",
+        "04_falcon_report.txt"
+      ],
+      "unanswerable": true
+    },
+    {
+      "question_id": "unknown-1",
+      "category": "unanswerable",
+      "mode": "Community + text",
+      "required_source_recall": null,
+      "all_required_sources": null,
+      "retrieval_seconds": 0.001445484999976543,
+      "retrieved_sources": [
+        "01_aster_report.txt",
+        "02_boreal_operations.txt",
+        "05_grove_report.txt"
+      ],
+      "unanswerable": true
+    }
+  ]
+}
